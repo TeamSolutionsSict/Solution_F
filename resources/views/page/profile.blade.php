@@ -46,10 +46,8 @@
                 </div>
                 
                 <div class="form-style form-style-2">
-                    <div class="user-profile-img">
-                        <img src="@if($user[0]['avatar'] == null) {{ url(asset('page/images/demo/admin.jpg')) }} 
-                        @else {{ url(asset($user[0]['avatar'])) }} @endif" alt="admin">
-                    </div>
+                    <div class="user-profile-img"><img src="@if($user[0]['avatar'] == null) {{ url(asset('page/images/demo/admin.jpg')) }} 
+                        @else {{ url(asset($user[0]['avatar'])) }} @endif" alt="admin"></div>
                     <p class="user-profile-p">
                         <label>Profile Picture</label>
                     <div class="fileinputs">
@@ -61,11 +59,13 @@
                     </div>
                     <p></p>
                     <div class="clearfix"></div>
-                    <p>
-                        <label>About Yourself</label>
-                        <textarea cols="58" rows="8" name="mix">@cartman and @kyle do not know #homer</textarea>
-                    </p>
+
                 </div>
+
+                <p>
+                    <label>About Yourself</label>
+                    <textarea cols="58" rows="8" name="mix">@cartman and @kyle do not know #homer</textarea>
+                </p>
 
                 <p class="form-submit">
                     <input type="submit" value="Update Profile" class="button color small login-submit submit">
@@ -73,80 +73,72 @@
             </form>
 
             <br><br>
+
+            {{--=====================================--}}
+
             <div class="page-content page-content-user-profile">
                 <div class="user-profile-widget">
-                    <h2 style="color: #fdb655">User Stats</h2>
-                    <div class="ul_list ul_list-icon-ok">
-                        <ul>
-                            <li><i class="icon-question-sign"></i><a href="user_questions.html">Total Of Questions<span> ( <span>30</span> ) </span></a></li>
-                            <li><i class="icon-comment"></i><a href="user_answers.html">Answered Questions<span> ( <span>10</span> ) </span></a></li>
-                            <li><i class="icon-question"></i><a href="user_favorite_questions.html">Unanswered Questions<span> ( <span>3</span> ) </span></a></li>
-                            <li><i class="icon-remove"></i><a href="user_favorite_questions.html">Reported Questions<span> ( <span>2</span> ) </span></a></li>
+                    <h2 style="color: #fdb655">My Stats</h2>
+                    <hr>
+
+                    <div class="tabs-warp question-tab">
+                        <ul class="tabs">
+                            {{--<li class="tab"><a href="#" class="current"><i style="color: yellow" class="icon-question-sign"></i>Total Of Questions( <span>{{ $user_detail[0]['num_post'] }}</span> )</a></li>--}}
+                            <li class="tab"><a href="#"><i style="color: #3498db" class="icon-comment"></i>Answered Questions( <span>{{ $user[0]['post_answered'] }}</span> )</a></li>
+                            <li class="tab"><a href="#"><i style="color: orangered" class="icon-question"></i>Unanswered Questions( <span>{{ $user[0]['num_post'] - $user[0]['post_answered'] }}</span> )</a></li>
                         </ul>
+
+                        <div class="tab-inner-warp">
+                            <div class="tab-inner">
+                                @for($i = 0; $i < $user[0]['post_answered']; $i ++)
+                                    <article class="question user-question">
+                                        <h3>
+                                            <a href="single_question.html">This is my third Question</a>
+                                        </h3>
+                                        <a class="question-report blue-button" href="{{route('get.QuestionDetails',$user[0]['id'])}}">Details</a>
+                                        <!-- <div class="question-type-main"><i class="icon-question-sign"></i>Question</div> -->
+                                        <div class="question-content">
+                                            <div class="question-bottom">
+                                                <div class="question-answered question-answered-done"><i class="icon-ok"></i>Solved</div>
+                                                <span class="question-category"><a href="#"><i class="icon-folder-close"></i>HTML</a></span>
+                                                <span class="question-date"><i class="icon-time"></i>15 secs ago</span>
+                                                <span class="question-comment"><a href="#"><i class="icon-comment"></i>5 Answers</a></span>
+                                                <a class="question-reply" href="#"><i class="icon-heart"></i>4 votes</a>
+                                                <span class="question-view"><i class="icon-user"></i>70 views</span>
+                                            </div>
+                                        </div>
+                                    </article>
+                                @endfor
+                            </div>
+                        </div>
+
+                        <div class="tab-inner-warp">
+                            <div class="tab-inner">
+                                @for($i = 0; $i < $user[0]['num_post'] - $user[0]['post_answered']; $i ++)
+                                    <article class="question user-question">
+                                        <h3>
+                                            <a href="single_question_poll.html">This Is my second Question</a>
+                                        </h3>
+                                        <a class="question-report blue-button" href="{{route('get.QuestionDetails',$user[0]['id'])}}">Details</a>
+                                        <!-- <div class="question-type-main"><i class="icon-signal"></i>Poll</div> -->
+                                        <div class="question-content">
+                                            <div class="question-bottom">
+                                                <div class="question-answered"><i class="icon-flag"></i>Reported</div>
+                                                <span class="question-category"><a href="#"><i class="icon-folder-close"></i>CSS</a></span>
+                                                <span class="question-date"><i class="icon-time"></i>15 secs ago</span>
+                                                <span class="question-comment"><a href="#"><i class="icon-comment"></i>5 Answers</a></span>
+                                                <a class="question-reply" href="#"><i class="icon-heart"></i>4 votes</a>
+                                                <span class="question-view"><i class="icon-user"></i>70 views</span>
+                                            </div>
+                                        </div>
+                                    </article>
+                                @endfor
+                            </div>
+                        </div>
+
                     </div>
                 </div><!-- End user-profile-widget -->
             </div><!-- End page-content -->
-            <br><br>
-            <div class="page-content page-content-user">
-                <div class="user-profile-widget"><br>
-                    <h2 style="color: red">Total Of Questions/- Answered Questions/- Unanswered Questions/- Reported Questions</h2><hr>
-                    <div class="user-questions">
-                        <article class="question user-question">
-                            <h3>
-                                <a href="single_question.html">This is my first Question</a>
-                            </h3>
-                            {{-- <a class="question-report blue-button" href="{{route('get.QuestionDetails')}}">Details</a> --}}
-                            <!-- <div class="question-type-main"></div> -->
-                            <div class="question-content">
-                                <div class="question-bottom">
-                                    <div class="question-answered question-answered-done"><i class="icon-question"></i>In progress</div>
-                                    <span class="question-category"><a href="#"><i class="icon-folder-close"></i>wordpress</a></span>
-                                    <span class="question-date"><i class="icon-time"></i>15 secs ago</span>
-                                    <span class="question-comment"><a href="#"><i class="icon-comment"></i>5 Answers</a></span>
-                                    <a class="question-reply" href="#"><i class="icon-heart"></i>4 votes</a>
-                                    <span class="question-view"><i class="icon-user"></i>70 views</span>
-                                </div>
-                            </div>
-                        </article>
-                        <article class="question user-question">
-                            <h3>
-                                <a href="single_question_poll.html">This Is my second Question</a>
-                            </h3>
-                            {{-- <a class="question-report blue-button" href="{{route('get.QuestionDetails')}}">Details</a> --}}
-                            <!-- <div class="question-type-main"><i class="icon-signal"></i>Poll</div> -->
-                            <div class="question-content">
-                                <div class="question-bottom">
-                                    <div class="question-answered"><i class="icon-flag"></i>Reported</div>
-                                    <span class="question-category"><a href="#"><i class="icon-folder-close"></i>CSS</a></span>
-                                    <span class="question-date"><i class="icon-time"></i>15 secs ago</span>
-                                    <span class="question-comment"><a href="#"><i class="icon-comment"></i>5 Answers</a></span>
-                                    <a class="question-reply" href="#"><i class="icon-heart"></i>4 votes</a>
-                                    <span class="question-view"><i class="icon-user"></i>70 views</span>
-                                </div>
-                            </div>
-                        </article>
-                        <article class="question user-question">
-                            <h3>
-                                <a href="single_question.html">This is my third Question</a>
-                            </h3>
-                            {{-- <a class="question-report blue-button" href="{{route('get.QuestionDetails')}}">Details</a> --}}
-                            <!-- <div class="question-type-main"><i class="icon-question-sign"></i>Question</div> -->
-                            <div class="question-content">
-                                <div class="question-bottom">
-                                    <div class="question-answered question-answered-done"><i class="icon-ok"></i>Solved</div>
-                                    <span class="question-category"><a href="#"><i class="icon-folder-close"></i>HTML</a></span>
-                                    <span class="question-date"><i class="icon-time"></i>15 secs ago</span>
-                                    <span class="question-comment"><a href="#"><i class="icon-comment"></i>5 Answers</a></span>
-                                    <a class="question-reply" href="#"><i class="icon-heart"></i>4 votes</a>
-                                    <span class="question-view"><i class="icon-user"></i>70 views</span>
-                                </div>
-                            </div>
-                        </article>
-
-                    </div>
-
-                </div>
-            </div>
 
         </div>
     </div>

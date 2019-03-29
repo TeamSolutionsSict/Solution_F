@@ -5,7 +5,9 @@
 
     </div><!-- End section-warp -->
 @endsection
+
 @section('content')
+
     <div class="page-content ask-question">
         <div class="boxedtitle page-title"><h2>Ask Question</h2></div>
 
@@ -45,19 +47,19 @@
     <script src="{{asset('page/ckeditor/ckeditor.js')}}"></script>
     <script> CKEDITOR.replace('editor1');  </script>
     <script> hljs.initHighlightingOnLoad(); </script>
-{{-- <script src="https://code.jquery.com/jquery-3.3.1.js"></script> --}}
+    {{-- <script src="https://code.jquery.com/jquery-3.3.1.js"></script> --}}
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.2/ace.js"></script>
-<script>
-    var editor = ace.edit('editor');
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.2/ace.js"></script>
+    <script>
+        var editor = ace.edit('editor');
         editor.session.setMode("ace/mode/batchfile");
         editor.setTheme("ace/theme/monokai-sublime");
         editor.setOptions({
-        maxLines: Infinity
+            maxLines: Infinity
         });
-    var input = $('input[name="content_code"]');
+        var input = $('input[name="content_code"]');
         editor.getSession().on("change", function () {
-        input.val(editor.getSession().getValue());
-    });   
-</script>
+            input.val(editor.getSession().getValue());
+        });
+    </script>
 @endsection

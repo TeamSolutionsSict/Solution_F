@@ -172,7 +172,7 @@
         var email = $('#email').html();
         var phone = $('#phone').html();
         $.ajax({
-            url: '{{route('post.test')}}',
+            url: '{{route('post.Register')}}',
             type: 'POST',
             data: {
                 username: username,

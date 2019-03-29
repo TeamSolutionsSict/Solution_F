@@ -5,6 +5,7 @@
 
     </div><!-- End section-warp -->
 @endsection
+
 @section('content')
 
     <div class="col-md-12">
@@ -94,8 +95,8 @@
             <h2 style="color: #fdb655">Say hello !</h2>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi adipiscing gravida odio, sit amet suscipit risus ultrices eu. Fusce viverra neque at purus laoreet consequat.</p>
             <br>
-            <form class="form-style form-style-3 form-style-5 form-js" action="{{ route('post.Contact') }}" method="post">
-                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+            <form class="form-style form-style-3 form-style-5 form-js" action="{!! route('post.Contact') !!}" method="post">
+                <input type="hidden" name="_token" value="{!! csrf_token() !!}">
                 <div class="form-inputs clearfix">
                     <p>
                         <label for="name" class="required">Full Name<span>*</span></label>
@@ -118,4 +119,5 @@
             </form>
         </div>
     </div>
+
 @endsection
