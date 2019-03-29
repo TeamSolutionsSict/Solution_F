@@ -23,10 +23,12 @@ class AppServiceProvider extends ServiceProvider
             $randomTag = KeywordModel::select('tb_keyword.keyword')
                 ->limit(10)
                 ->inRandomOrder()
-//                ->first()
                 ->get();
             $view->with('randomTag',$randomTag);
         });
+
+//        =============================
+
           $sta=PostModel::select('id')->where('status',1)->get()->toArray();
           $stats=array();
           $stats['total']=count($sta);

@@ -21,7 +21,7 @@
                             <div class="user-profile-img"><img width="60" height="60" src="{{url(asset('page/images/demo/admin.jpg'))}}" alt="admin"></div>
                             <div class="ul_list ul_list-icon-ok about-user">
                                 <ul>
-                                    <li><span><b>{{ $user_detail[0]['name'] }}</b></span></li>
+                                    <li><span><b>{{ $user_detail[0]['firstname'] }} {{ $user_detail[0]['lastname'] }}</b></span></li>
                                     <li><span><b>{{ $user_detail[0]['email'] }}</b></span></li>
                                     {{--<li>Phone : <span><b>{{ $user_detail[0]['phone'] }}</b></span></li>--}}
                                 </ul>
@@ -82,7 +82,7 @@
                                     <h3>
                                         <a href="single_question.html">This is my third Question</a>
                                     </h3>
-                                    <a class="question-report blue-button" href="{{route('get.QuestionDetails')}}">Details</a>
+                                    <a class="question-report blue-button" href="{{route('get.QuestionDetails',$user_detail[0]['id'])}}">Details</a>
                                     <!-- <div class="question-type-main"><i class="icon-question-sign"></i>Question</div> -->
                                     <div class="question-content">
                                         <div class="question-bottom">
@@ -106,7 +106,7 @@
                                     <h3>
                                         <a href="single_question_poll.html">This Is my second Question</a>
                                     </h3>
-                                    <a class="question-report blue-button" href="{{route('get.QuestionDetails')}}">Details</a>
+                                    <a class="question-report blue-button" href="{{route('get.QuestionDetails',$user_detail[0]['id'])}}">Details</a>
                                     <!-- <div class="question-type-main"><i class="icon-signal"></i>Poll</div> -->
                                     <div class="question-content">
                                         <div class="question-bottom">

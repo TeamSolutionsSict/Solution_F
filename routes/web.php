@@ -12,7 +12,7 @@
 */
 
 
-Route::get('home',['as'=>'get.Home','uses'=>'pageController@getHome']);
+Route::get('/',['as'=>'get.Home','uses'=>'pageController@getHome']);
 
 Route::get('terms',['as'=>'get.Terms','uses'=>'PostController@getTerms']);
 
@@ -24,7 +24,7 @@ Route::get('down-vote-post/{id}',['as'=>'get.down-vote-post','uses'=>'PostContro
 Route::get('check-vote-post/{id}',['as'=>'get.check-vote-post','uses'=>'PostController@getCheckVotePost']);
 
 //xem profile user khác
-Route::get('user-detail/{id}',['as'=>'get.UserDetail','uses'=>'pageController@getUser']);
+Route::get('user-detail/{id}',['as'=>'get.UserDetail','uses'=>'userController@getUser']);
 //Danh sách user
 Route::get('user-list',['as'=>'get.UserList','uses'=>'userController@getListUser']);
 Route::get('user-list/search',['as'=>'get.SearchUser','uses'=>'userController@getSearchUser']);
@@ -45,8 +45,8 @@ Route::post('addComment/{id}',['as'=>'post.addComment','uses'=>'pageController@a
 
 Route::group(['prefix' => 'user', 'middleware' => 'userMiddleware'], function() {
 	//Profile của người đang đăng nhập
-	Route::get('profile/{id}',['as' => 'get.Profile','uses' => 'pageController@getProfile']);
-	Route::post('edit-profile/{id}',['as' => 'post.EditProfile','uses' => 'pageController@postEditProfile']);
+	Route::get('profile/{id}',['as' => 'get.Profile','uses' => 'profileController@getProfile']);
+	Route::post('edit-profile/{id}',['as' => 'post.EditProfile','uses' => 'profileController@postEditProfile']);
 });
 //Login
 Route::post('login',['as' => 'post.Login', 'uses' => 'LoginController@postLogin']);
