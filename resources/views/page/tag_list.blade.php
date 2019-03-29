@@ -1,5 +1,5 @@
 @extends('page.master')
-
+@section('title', 'Tag List')
 @section ('section-warp')
     <div class="section-warp ask-me">
 

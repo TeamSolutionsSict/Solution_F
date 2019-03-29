@@ -1,5 +1,5 @@
 @extends('page.master')
-@section('title', 'Trang chủ')
+@section('title', 'Home')
 @section('section-warp')
     <div class="section-warp ask-me">
         <div class="container clearfix">

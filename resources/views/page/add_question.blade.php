@@ -7,7 +7,6 @@
 @endsection
 
 @section('content')
-
     <div class="page-content ask-question">
         <div class="boxedtitle page-title"><h2>Ask Question</h2></div>
 
