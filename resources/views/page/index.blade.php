@@ -1,5 +1,5 @@
 @extends('page.master')
-@section('title', 'Trang chủ')
+@section('title', 'Home')
 @section('section-warp')
     <div class="section-warp ask-me">
         <div class="container clearfix">
@@ -9,7 +9,7 @@
                         <h2>Welcome to Ask me</h2>
                         <p>Duis dapibus aliquam mi, eget euismod sem scelerisque ut. Vivamus at elit quis urna adipiscing iaculis. Curabitur vitae velit in neque dictum blandit. Proin in iaculis neque.</p>
                         <div class="clearfix"></div>
-                        <a class="color button dark_button medium" href="{{route('get.Contact')}}">About Us</a>
+                        <a class="color button dark_button medium" href="{{ route('get.Contact') }}">About Us</a>
                         {{--<a class="color button dark_button medium" href="#">Join Now</a>--}}
                     </div>
                     <div class="col-md-9">
@@ -17,7 +17,7 @@
                             <p>
                                 <textarea rows="4" id="question_title" onfocus="if(this.value=='Ask any question and you be sure find your answer ?')this.value='';" onblur="if(this.value=='')this.value='Ask any question and you be sure find your answer ?';">Ask any question and you be sure find your answer ?</textarea>
                                 <i class="icon-pencil"></i>
-                                <a href="{{route('get.Terms')}}" class="color button small publish-question">Ask Now</a>
+                                <a href="{{ route('get.Terms') }}" class="color button small publish-question">Ask Now</a>
                             </p>
                         </form>
                     </div>
