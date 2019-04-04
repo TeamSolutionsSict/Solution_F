@@ -16,8 +16,7 @@ Route::get('check-vote-post-count/{id}',['as'=>'get.check-vote-post-count','uses
 Route::get('vote-comment/{id}',['as'=>'get.vote-comment','uses'=>'pageController@getVoteComment']);
 Route::get('down-vote-comment/{id}',['as'=>'get.down-vote-comment','uses'=>'pageController@getDownVoteComment']);
 Route::get('check-vote-comment/{id}',['as'=>'get.check-vote-comment','uses'=>'pageController@getCheckVoteComment']);
-//xem profile user khác
-Route::get('user-detail/{id}',['as'=>'get.UserDetail','uses'=>'pageController@getUser']);
+
 //Danh sách user
 Route::get('user-list',['as'=>'get.UserList','uses'=>'userController@getListUser']);
 Route::get('user-list/search',['as'=>'get.SearchUser','uses'=>'userController@getSearchUser']);
@@ -39,8 +38,7 @@ Route::get('home-more/{mode}/{offset}',['as'=>'get.HomeMore','uses'=>'pageContro
 
 Route::group(['prefix' => 'user', 'middleware' => 'userMiddleware'], function() {
 	//Profile của người đang đăng nhập
-	Route::get('profile/{id}',['as' => 'get.Profile','uses' => 'pageController@getProfile']);
-	Route::post('edit-profile/{id}',['as' => 'post.EditProfile','uses' => 'pageController@postEditProfile']);
+	
 });
 //Login
 Route::post('login',['as' => 'post.Login', 'uses' => 'LoginController@postLogin']);
