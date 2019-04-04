@@ -11,19 +11,6 @@
 |
 */
 
-
-Route::get('home',['as'=>'get.Home','uses'=>'pageController@getHome']);
-
-Route::get('terms',['as'=>'get.Terms','uses'=>'pageController@getTerms']);
-
-Route::get('add-question',['as'=>'get.AddQuestion','uses'=>'pageController@getAddQuestion']);
-Route::post('add-question',['as'=>'post.AddQuestion','uses'=>'pageController@postAddQuestion']);
-
-//Route::get('question-details',['as'=>'get.QuestionDetails','uses'=>'pageController@getQuestionDetails']);
-Route::get('question-details/{id}',['as'=>'get.QuestionDetails','uses'=>'pageController@getQuestionDetails']);
-Route::get('vote-post/{id}',['as'=>'get.vote-post','uses'=>'pageController@getVotePost']);
-Route::get('down-vote-post/{id}',['as'=>'get.down-vote-post','uses'=>'pageController@getDownVotePost']);
-Route::get('check-vote-post/{id}',['as'=>'get.check-vote-post','uses'=>'pageController@getCheckVotePost']);
 Route::get('check-vote-post-count/{id}',['as'=>'get.check-vote-post-count','uses'=>'pageController@getCheckVoteCount']);
 //coment vote dcm
 Route::get('vote-comment/{id}',['as'=>'get.vote-comment','uses'=>'pageController@getVoteComment']);
