@@ -38,7 +38,8 @@ Route::get('home-more/{mode}/{offset}',['as'=>'get.HomeMore','uses'=>'pageContro
 
 Route::group(['prefix' => 'user', 'middleware' => 'userMiddleware'], function() {
 	//Profile của người đang đăng nhập
-	
+	Route::get('profile/{id}',['as' => 'get.Profile','uses' => 'profileController@getProfile']);
+	Route::post('edit-profile/{id}',['as' => 'post.EditProfile','uses' => 'profileController@postEditProfile']);
 });
 //Login
 Route::post('login',['as' => 'post.Login', 'uses' => 'LoginController@postLogin']);
