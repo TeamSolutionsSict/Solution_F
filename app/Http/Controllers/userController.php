@@ -53,5 +53,7 @@ class userController extends Controller
             }
         }
     }
-
+    public function search(){
+        return view('page.search');
+    }
 }

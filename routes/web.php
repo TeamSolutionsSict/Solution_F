@@ -12,7 +12,7 @@
 */
 
 
-Route::get('home',['as'=>'get.Home','uses'=>'pageController@getHome']);
+Route::get('/',['as'=>'get.Home','uses'=>'pageController@getHome']);
 
 Route::get('terms',['as'=>'get.Terms','uses'=>'PostController@getTerms']);
 
@@ -52,3 +52,4 @@ Route::group(['prefix' => 'user', 'middleware' => 'userMiddleware'], function() 
 Route::post('login',['as' => 'post.Login', 'uses' => 'LoginController@postLogin']);
 Route::get('logout',['as' => 'get.Logout', 'uses' => 'LoginController@getLogout']);
 
+Route::get('search',['as' => 'get.search', 'uses' => 'userController@search']);

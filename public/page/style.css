@@ -1888,6 +1888,9 @@ div[class*="slider_shadow"]:before, div[class^="header_shadow"] {
 	border-radius: 2px;
 	position: relative;
 }
+.result{
+	margin-bottom: 10px;
+}
 .widget_social li.facebook-fans a strong {
 	background-color: #5d82d1;
 }
