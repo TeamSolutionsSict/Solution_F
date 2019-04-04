@@ -28,7 +28,7 @@
                 <div class="tag_detail col-lg-3">
                     <div class="content">
                         <ul>
-                            <li><a href="#"><span>{{ str_limit($value['keyword'], 14) }}</span></a></li>
+                            <li><a href="{{ route('get.QuestionByTag', $value->id) }}"><span>{{ str_limit($value['keyword'], 14) }}</span></a></li>
                             <li><p>Posts: <span>{{ $value->num_keyword }}</span></p></li>
                         </ul>
                     </div>
