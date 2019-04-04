@@ -11,7 +11,7 @@ class userController extends Controller
 
     public function getListUser(){
         $user = User::selectRaw('tb_user.username,tb_user.firstname, tb_user.lastname ,tb_user.phone, tb_user.id, tb_user.email, tb_user.avatar, tb_user.status, tb_user.level, count(tb_post.id) as num_post, count(tb_comment.id) as num_comment')
-            ->where('tb_user.level', '=', 2)
+            ->where('tb_user.level', '=', 1)
             ->leftjoin('tb_post','tb_user.username','tb_post.username')
             ->leftjoin('tb_comment','tb_comment.username','tb_user.username')
             ->groupBy('tb_user.username','tb_user.phone', 'tb_user.id', 'tb_user.email', 'tb_user.avatar', 'tb_user.status', 'tb_user.level','tb_user.firstname', 'tb_user.lastname')
@@ -53,16 +53,7 @@ class userController extends Controller
             }
         }
     }
-
-    //User (xem trang cá nhân cửa người khác)
-    public function getUser(Request $request){
-        $user_detail = User::selectRaw('tb_user.*, count(tb_post.id) as num_post, count(tb_post.id) as num_comment, count(tb_post.comment) as post_answered')
-            ->where('tb_user.id', $request->id)
-            ->leftjoin('tb_post','tb_user.username','tb_post.username')
-            ->leftjoin('tb_comment','tb_comment.username','tb_user.username')
-            ->groupBy('tb_user.username','tb_user.phone', 'tb_user.id', 'tb_user.email', 'tb_user.avatar', 'tb_user.status', 'tb_user.level', 'tb_user.bio_profile','tb_user.remember_token','tb_user.firstname','tb_user.lastname','tb_user.password')
-            ->get()->toArray();
-        return view('page.user_detail', compact('user_detail'));
+    public function search(){
+        return view('page.search');
     }
-
 }
