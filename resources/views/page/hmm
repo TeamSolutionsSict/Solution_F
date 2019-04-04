@@ -1,0 +1,445 @@
+<article class="question question-type-normal"><h2><a href="link122">cocly</a></h2><a class="question-report red-button" href="#">Report</a><div class="question-type-main"><a href="link122">Answer</a></div><div class="question-author"><a href="#" original-title="ahihi1" class="question-author-img tooltip-n"><span></span><img alt="" src="https://blog.btaskee.com/wp-content/uploads/2018/06/kh%E1%BB%AD-m%C3%B9i-n%C6%B0%E1%BB%9Bc-ti%E1%BB%83u-m%C3%A8o-1-620x400.jpg></a></div><div class="question-inner"><div class="clearfix"></div><p class="question-desc">1. Nguyên tắc chung nhất khi code PHP
+
+Các file code PHẢI sử dụng thẻ \n";
+
+// khai báo hàm
+function foo()
+{
+    // function body
+}
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+ 
+\n";
+ 
+// khai báo hàm
+function foo()
+{
+    // function body
+}
+ 
+
+Đoạn mã PHP sau đúng chuẩn, đã khai báo thì không gồm hiệu ứng phụ
+
+908-2
+
+
+<?php
+// declaration
+function foo()
+{
+    // function body
+}
+
+if (! function_exists('bar')) {
+     //Khai báo hàm
+    function bar()
+    {
+        // function body
+    }
+}
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+ 
+<?php
+// declaration
+function foo()
+{
+    // function body
+}
+ 
+if (! function_exists('bar')) {
+     //Khai báo hàm
+    function bar()
+    {
+        // function body
+    }
+}
+ <div class="question-details"><span class="question-answered" style="color: #00aced;"><i class="icon-question"></i>In progress</span><span class="question-date"><i class="icon-time"></i>10 days, 4 hours 15 minutes ago</span><span class="question-comment"><a href="#"><i class="icon-comment"></i>9Answer</a></span><a class="question-reply" href="#"><i class="icon-heart"></i>34Vote</a><span class="question-view"><i class="icon-user"></i><br><span class="question-category"><a href="#"><i class="icon-folder-close"></i>MMT</a></span><span class="question-category"><a href="#"><i class="icon-folder-close"></i>Mạng máy tính</a></span><span class="question-category"><a href="#"><i class="icon-folder-close"></i>Genymotion</a></span><div class="clearfix"></div></div></div></article>
+home:644 <article class="question question-type-normal"><h2><a href="link123">suprise</a></h2><a class="question-report red-button" href="#">Report</a><div class="question-type-main"><a href="link123">Answer</a></div><div class="question-author"><a href="#" original-title="ahihi1" class="question-author-img tooltip-n"><span></span><img alt="" src="https://blog.btaskee.com/wp-content/uploads/2018/06/kh%E1%BB%AD-m%C3%B9i-n%C6%B0%E1%BB%9Bc-ti%E1%BB%83u-m%C3%A8o-1-620x400.jpg></a></div><div class="question-inner"><div class="clearfix"></div><p class="question-desc">1. Nguyên tắc chung nhất khi code PHP
+
+Các file code PHẢI sử dụng thẻ \n";
+
+// khai báo hàm
+function foo()
+{
+    // function body
+}
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+ 
+\n";
+ 
+// khai báo hàm
+function foo()
+{
+    // function body
+}
+ 
+
+Đoạn mã PHP sau đúng chuẩn, đã khai báo thì không gồm hiệu ứng phụ
+
+908-2
+
+
+<?php
+// declaration
+function foo()
+{
+    // function body
+}
+
+if (! function_exists('bar')) {
+     //Khai báo hàm
+    function bar()
+    {
+        // function body
+    }
+}
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+ 
+<?php
+// declaration
+function foo()
+{
+    // function body
+}
+ 
+if (! function_exists('bar')) {
+     //Khai báo hàm
+    function bar()
+    {
+        // function body
+    }
+}
+ <div class="question-details"><span class="question-answered" style="color: #00aced;"><i class="icon-question"></i>In progress</span><span class="question-date"><i class="icon-time"></i>10 days, 4 hours 15 minutes ago</span><span class="question-comment"><a href="#"><i class="icon-comment"></i>8Answer</a></span><a class="question-reply" href="#"><i class="icon-heart"></i>34Vote</a><span class="question-view"><i class="icon-user"></i><br><div class="clearfix"></div></div></div></article>
+home:644 <article class="question question-type-normal"><h2><a href="link2637627">ạksdhkh</a></h2><a class="question-report red-button" href="#">Report</a><div class="question-type-main"><a href="link2637627">Answer</a></div><div class="question-author"><a href="#" original-title="2 ahhi" class="question-author-img tooltip-n"><span></span><img alt="" src="https://kenh14cdn.com/2016/2016-09-05-1332489588334123717-1475145104795.jpg></a></div><div class="question-inner"><div class="clearfix"></div><p class="question-desc">B&agrave;i tập Java cơ bản c&oacute; giải
+
+B&agrave;i 1.&nbsp;Viết chương tr&igrave;nh t&igrave;m ước số chung lớn nhất, bội số chung nhỏ nhất của hai số tự nhi&ecirc;n a v&agrave; b.&nbsp;
+
+
+package bai01; 
+import java.util.Scanner; 
+public class Main {
+  public static int nhap()
+  {
+ Scanner input = new Scanner(System.in); 
+    boolean check= false;
+ int n=0; 
+             while(!check){
+ System.out.print(" "); 
+                    try{
+ n= input.nextInt(); 
+                         check= true;
+                    }catch(Exception e){
+ System.out.println("Ban phai nhap so! hay nhap lai..."); 
+                         input.nextLine();
+                    }
+
+             }
+             return (n);
+}
+public static int UCLN(int a, int b){
+              while(a!= b){
+ if(a&gt;b) a= a-b; 
+                     else b= b-a;
+             }
+             return (a);
+    }
+public static void main(String[] args)
+  { System.out.println("Nhap a");
+ int a = nhap(); 
+ System.out.println("Nhap b"); 
+           int b= nhap();
+ System.out.println("Uoc chung lon nhat cua "+a+" va "+b+" la: "+UCLN(a,b)); 
+           System.out.println("Boi chung nho nhat cua "+a+" va "+b+" la: "+((a*b)/UCLN(a,b)));
+  }
+}
+
+&nbsp;
+B&agrave;i tập Java cơ bản c&oacute; giải
+
+B&agrave;i 1.&nbsp;Viết chương tr&igrave;nh t&igrave;m ước số chung lớn nhất, bội số chung nhỏ nhất của hai số tự nhi&ecirc;n a v&agrave; b.&nbsp;
+
+
+package bai01; 
+import java.util.Scanner; 
+public class Main {
+  public static int nhap()
+  {
+ Scanner input = new Scanner(System.in); 
+    boolean check= false;
+ int n=0; 
+             while(!check){
+ System.out.print(" "); 
+                    try{
+ n= input.nextInt(); 
+                         check= true;
+                    }catch(Exception e){
+ System.out.println("Ban phai nhap so! hay nhap lai..."); 
+                         input.nextLine();
+                    }
+
+             }
+             return (n);
+}
+public static int UCLN(int a, int b){
+              while(a!= b){
+ if(a&gt;b) a= a-b; 
+                     else b= b-a;
+             }
+             return (a);
+    }
+public static void main(String[] args)
+  { System.out.println("Nhap a");
+ int a = nhap(); 
+ System.out.println("Nhap b"); 
+           int b= nhap();
+ System.out.println("Uoc chung lon nhat cua "+a+" va "+b+" la: "+UCLN(a,b)); 
+           System.out.println("Boi chung nho nhat cua "+a+" va "+b+" la: "+((a*b)/UCLN(a,b)));
+  }
+}
+
+&nbsp;
+<div class="question-details"><span class="question-answered" style="color: #00aced;"><i class="icon-question"></i>In progress</span><span class="question-date"><i class="icon-time"></i>17 days, 3 hours 57 minutes ago</span><span class="question-comment"><a href="#"><i class="icon-comment"></i>16Answer</a></span><a class="question-reply" href="#"><i class="icon-heart"></i>96Vote</a><span class="question-view"><i class="icon-user"></i><br><div class="clearfix"></div></div></div></article>
+home:644 <article class="question question-type-normal"><h2><a href="link0">hihihi</a></h2><a class="question-report red-button" href="#">Report</a><div class="question-type-main"><a href="link0">Answer</a></div><div class="question-author"><a href="#" original-title="2 ahhi" class="question-author-img tooltip-n"><span></span><img alt="" src="https://kenh14cdn.com/2016/2016-09-05-1332489588334123717-1475145104795.jpg></a></div><div class="question-inner"><div class="clearfix"></div><p class="question-desc">B&agrave;i tập Java cơ bản c&oacute; giải
+
+B&agrave;i 1.&nbsp;Viết chương tr&igrave;nh t&igrave;m ước số chung lớn nhất, bội số chung nhỏ nhất của hai số tự nhi&ecirc;n a v&agrave; b.&nbsp;
+
+
+package bai01; 
+import java.util.Scanner; 
+public class Main {
+  public static int nhap()
+  {
+ Scanner input = new Scanner(System.in); 
+    boolean check= false;
+ int n=0; 
+             while(!check){
+ System.out.print(" "); 
+                    try{
+ n= input.nextInt(); 
+                         check= true;
+                    }catch(Exception e){
+ System.out.println("Ban phai nhap so! hay nhap lai..."); 
+                         input.nextLine();
+                    }
+
+             }
+             return (n);
+}
+public static int UCLN(int a, int b){
+              while(a!= b){
+ if(a&gt;b) a= a-b; 
+                     else b= b-a;
+             }
+             return (a);
+    }
+public static void main(String[] args)
+  { System.out.println("Nhap a");
+ int a = nhap(); 
+ System.out.println("Nhap b"); 
+           int b= nhap();
+ System.out.println("Uoc chung lon nhat cua "+a+" va "+b+" la: "+UCLN(a,b)); 
+           System.out.println("Boi chung nho nhat cua "+a+" va "+b+" la: "+((a*b)/UCLN(a,b)));
+  }
+}
+
+&nbsp;
+B&agrave;i tập Java cơ bản c&oacute; giải
+
+B&agrave;i 1.&nbsp;Viết chương tr&igrave;nh t&igrave;m ước số chung lớn nhất, bội số chung nhỏ nhất của hai số tự nhi&ecirc;n a v&agrave; b.&nbsp;
+
+
+package bai01; 
+import java.util.Scanner; 
+public class Main {
+  public static int nhap()
+  {
+ Scanner input = new Scanner(System.in); 
+    boolean check= false;
+ int n=0; 
+             while(!check){
+ System.out.print(" "); 
+                    try{
+ n= input.nextInt(); 
+                         check= true;
+                    }catch(Exception e){
+ System.out.println("Ban phai nhap so! hay nhap lai..."); 
+                         input.nextLine();
+                    }
+
+             }
+             return (n);
+}
+public static int UCLN(int a, int b){
+              while(a!= b){
+ if(a&gt;b) a= a-b; 
+                     else b= b-a;
+             }
+             return (a);
+    }
+public static void main(String[] args)
+  { System.out.println("Nhap a");
+ int a = nhap(); 
+ System.out.println("Nhap b"); 
+           int b= nhap();
+ System.out.println("Uoc chung lon nhat cua "+a+" va "+b+" la: "+UCLN(a,b)); 
+           System.out.println("Boi chung nho nhat cua "+a+" va "+b+" la: "+((a*b)/UCLN(a,b)));
+  }
+}
+
+&nbsp;
+<div class="question-details"><span class="question-date"><i class="icon-time"></i>17 days, 3 hours 57 minutes ago</span><span class="question-comment"><a href="#"><i class="icon-comment"></i>14Answer</a></span><a class="question-reply" href="#"><i class="icon-heart"></i>96Vote</a><span class="question-view"><i class="icon-user"></i><br><div class="clearfix"></div></div></div></article>
+home:644 <article class="question question-type-normal"><h2><a href="link27">ạksdhkh</a></h2><a class="question-report red-button" href="#">Report</a><div class="question-type-main"><a href="link27">Answer</a></div><div class="question-author"><a href="#" original-title="2 ahhi" class="question-author-img tooltip-n"><span></span><img alt="" src="https://kenh14cdn.com/2016/2016-09-05-1332489588334123717-1475145104795.jpg></a></div><div class="question-inner"><div class="clearfix"></div><p class="question-desc">B&agrave;i tập Java cơ bản c&oacute; giải
+
+B&agrave;i 1.&nbsp;Viết chương tr&igrave;nh t&igrave;m ước số chung lớn nhất, bội số chung nhỏ nhất của hai số tự nhi&ecirc;n a v&agrave; b.&nbsp;
+
+
+package bai01; 
+import java.util.Scanner; 
+public class Main {
+  public static int nhap()
+  {
+ Scanner input = new Scanner(System.in); 
+    boolean check= false;
+ int n=0; 
+             while(!check){
+ System.out.print(" "); 
+                    try{
+ n= input.nextInt(); 
+                         check= true;
+                    }catch(Exception e){
+ System.out.println("Ban phai nhap so! hay nhap lai..."); 
+                         input.nextLine();
+                    }
+
+             }
+             return (n);
+}
+public static int UCLN(int a, int b){
+              while(a!= b){
+ if(a&gt;b) a= a-b; 
+                     else b= b-a;
+             }
+             return (a);
+    }
+public static void main(String[] args)
+  { System.out.println("Nhap a");
+ int a = nhap(); 
+ System.out.println("Nhap b"); 
+           int b= nhap();
+ System.out.println("Uoc chung lon nhat cua "+a+" va "+b+" la: "+UCLN(a,b)); 
+           System.out.println("Boi chung nho nhat cua "+a+" va "+b+" la: "+((a*b)/UCLN(a,b)));
+  }
+}
+
+&nbsp;
+B&agrave;i tập Java cơ bản c&oacute; giải
+
+B&agrave;i 1.&nbsp;Viết chương tr&igrave;nh t&igrave;m ước số chung lớn nhất, bội số chung nhỏ nhất của hai số tự nhi&ecirc;n a v&agrave; b.&nbsp;
+
+
+package bai01; 
+import java.util.Scanner; 
+public class Main {
+  public static int nhap()
+  {
+ Scanner input = new Scanner(System.in); 
+    boolean check= false;
+ int n=0; 
+             while(!check){
+ System.out.print(" "); 
+                    try{
+ n= input.nextInt(); 
+                         check= true;
+                    }catch(Exception e){
+ System.out.println("Ban phai nhap so! hay nhap lai..."); 
+                         input.nextLine();
+                    }
+
+             }
+             return (n);
+}
+public static int UCLN(int a, int b){
+              while(a!= b){
+ if(a&gt;b) a= a-b; 
+                     else b= b-a;
+             }
+             return (a);
+    }
+public static void main(String[] args)
+  { System.out.println("Nhap a");
+ int a = nhap(); 
+ System.out.println("Nhap b"); 
+           int b= nhap();
+ System.out.println("Uoc chung lon nhat cua "+a+" va "+b+" la: "+UCLN(a,b)); 
+           System.out.println("Boi chung nho nhat cua "+a+" va "+b+" la: "+((a*b)/UCLN(a,b)));
+  }
+}
+
+&nbsp;
+<div class="question-details"><span class="question-date"><i class="icon-time"></i>17 days, 3 hours 57 minutes ago</span><span class="question-comment"><a href="#"><i class="icon-comment"></i>0Answer</a></span><a class="question-reply" href="#"><i class="icon-heart"></i>96Vote</a><span class="question-view"><i class="icon-user"></i><br><div class="clearfix"></div></div></div></article>

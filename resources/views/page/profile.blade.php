@@ -46,10 +46,8 @@
                 </div>
                 
                 <div class="form-style form-style-2">
-                    <div class="user-profile-img">
-                        <img src="@if($user[0]['avatar'] == null) {{ url(asset('page/images/demo/admin.jpg')) }} 
-                        @else {{ url(asset($user[0]['avatar'])) }} @endif" alt="admin">
-                    </div>
+                    <div class="user-profile-img"><img src="@if($user[0]['avatar'] == null) {{ url(asset('page/images/demo/admin.jpg')) }} 
+                        @else {{ url(asset($user[0]['avatar'])) }} @endif" alt="admin"></div>
                     <p class="user-profile-p">
                         <label>Profile Picture</label>
                     <div class="fileinputs">
@@ -61,11 +59,13 @@
                     </div>
                     <p></p>
                     <div class="clearfix"></div>
-                    <p>
-                        <label>About Yourself</label>
-                        <textarea cols="58" rows="8" name="mix">@cartman and @kyle do not know #homer</textarea>
-                    </p>
+
                 </div>
+
+                <p>
+                    <label>About Yourself</label>
+                    <textarea cols="58" rows="8" name="mix">@cartman and @kyle do not know #homer</textarea>
+                </p>
 
                 <p class="form-submit">
                     <input type="submit" value="Update Profile" class="button color small login-submit submit">
