@@ -1,21 +1,17 @@
 <aside class="col-md-3 sidebar">
-    @if (Auth::check())
-
-        <div class="widget widget_stats">
-            <h3 class="widget_title">My Stats</h3>
-            <div class="ul_list ul_list-icon-ok">
-                <a style="color: white; width: 100%; text-align: center" href="{{ route('get.Terms') }}" class="button large lime-green-button">Add Questions</a>
-                <ul>
-                    <li><i class="icon-question-sign"></i><a href="#">Total Of Questions<span> ( <span>{{$stats['total']}}</span> ) </span></a></li>
-                    <li><i class="icon-comment"></i><a href="#">Answered Questions<span> ( <span>{{$stats['answered']}}</span> ) </span></a></li>
-                    <li><i class="icon-question"></i><a href="#">Unanswered Questions<span> ( <span>{{$stats['unanswered']}}</span> ) </span></a></li>
-                    <li><i class="icon-remove"></i><a href="#">Reported Questions<span> ( <span>{{$stats['reported']}}</span> ) </span></a></li>
-                </ul>
-            </div>
+    <div class="widget widget_stats">
+        <h3 class="widget_title">My Stats</h3>
+        <div class="ul_list ul_list-icon-ok">
+            <a style="color: white; width: 100%; text-align: center" href="{{ route('get.Terms') }}" class="button large lime-green-button">Add Questions</a>
+            <ul>
+                
+                <li><i class="icon-question-sign"></i><a href="#">Total Of Questions<span> ( <span>{{$stats['total']}}</span> ) </span></a></li>
+                <li><i class="icon-comment"></i><a href="#">Answered Questions<span> ( <span>{{$stats['answered']}}</span> ) </span></a></li>
+                <li><i class="icon-question"></i><a href="#">Unanswered Questions<span> ( <span>{{$stats['unanswered']}}</span> ) </span></a></li>
+                <li><i class="icon-remove"></i><a href="#">Reported Questions<span> ( <span>{{$stats['reported']}}</span> ) </span></a></li>
+            </ul>
         </div>
-        
-    @endif
-
+    </div>
 
     <div class="widget widget_social">
         <h3 class="widget_title">Reputation</h3>

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\KeywordModel;
-use App\User;
 use Illuminate\Http\Request;
 use Nexmo\Response;
 
@@ -46,5 +45,4 @@ class tagController extends Controller
             }
         }
     }
-
 }
