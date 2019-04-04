@@ -168,42 +168,7 @@
 @endif
 @section('javascript')
 <script>
-    var input = document.querySelector('[name=mix]');
-
-        tagify = new Tagify(input, {
-            mode : 'mix',
-            pattern : /@|#/,
-            enforceWhitelist : true,
-            whitelist : [
-                {
-                    value : 'cartman'
-                },
-                {
-                    value : 'kyle'
-                }
-            ],
-            dropdown   : {
-                enabled : 1
-            }
-        });
-
-        tagify.on('input', function(e) {
-            var prefix = e.detail.prefix;
-
-            if(prefix) {
-                if( prefix == '@' )
-                    tagify.settings.whitelist = whitelist_1;
-
-                if( prefix == '#' )
-                    tagify.settings.whitelist = whitelist_2;
-
-                if( e.detail.value.length > 1 )
-                    tagify.dropdown.show.call(tagify, e.detail.value);
-            }
-            tagify.addTags(["Cuong"]);
-            
-            console.log('mix-mode "input" event value: ', e.detail);
-        });
+    $("textarea").hashtags();
 </script>
 @endsection
 @endsection

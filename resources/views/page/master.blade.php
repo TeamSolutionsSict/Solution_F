@@ -38,7 +38,7 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script> -->
 
     <!-- TagJS -->
-    <link rel="stylesheet" href="{{ asset('page/css/tagify.css') }}">
+    <link rel="stylesheet" href="{{ asset('page/css/jquery.hashtags.min.css') }}">
 
 </head>
 <body>
@@ -98,7 +98,8 @@
 <script src="{{ asset('page/js/jquery.bxslider.min.js') }}"></script>
 <script src="{{ asset('page/js/custom.js') }}"></script>
 <script src="{{ asset('js/prism/prism.js') }}"></script>
-<script src="{{ asset('page/js/tagify.min.js') }}"></script>
+<script src="{{ asset('page/js/autosize.min.js') }}"></script>
+<script src="{{ asset('page/js/jquery.hashtags.min.js') }}"></script>
 <!-- End js -->
 @yield('javascript')
 </body>
