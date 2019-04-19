@@ -93,13 +93,13 @@
                                 @for($i = 0; $i < $user[0]['post_answered']; $i ++)
                                     <article class="question user-question">
                                         <h3>
-                                            <a href="single_question.html">This is my third Question</a>
+                                            <a href="{{route('get.QuestionDetails',$user[0]['id_post'])}}">{{ $user[0]['title'] }}</a>
                                         </h3>
-                                        <a class="question-report blue-button" href="{{route('get.QuestionDetails',$user[0]['id'])}}">Details</a>
+                                        <a class="question-report blue-button" href="{{route('get.QuestionDetails',$user[0]['id_post'])}}">Details</a>
                                         <!-- <div class="question-type-main"><i class="icon-question-sign"></i>Question</div> -->
                                         <div class="question-content">
                                             <div class="question-bottom">
-                                                <div class="question-answered question-answered-done"><i class="icon-ok"></i>Solved</div>
+                                                {{--<div class="question-answered question-answered-done"><i class="icon-ok"></i>Solved</div>--}}
                                                 <span class="question-category"><a href="#"><i class="icon-folder-close"></i>HTML</a></span>
                                                 <span class="question-date"><i class="icon-time"></i>15 secs ago</span>
                                                 <span class="question-comment"><a href="#"><i class="icon-comment"></i>5 Answers</a></span>
@@ -117,18 +117,30 @@
                                 @for($i = 0; $i < $user[0]['num_post'] - $user[0]['post_answered']; $i ++)
                                     <article class="question user-question">
                                         <h3>
-                                            <a href="single_question_poll.html">This Is my second Question</a>
+                                            <a href="{{route('get.QuestionDetails',$user[0]['id_post'])}}">{{ $user[0]['title'] }}</a>
                                         </h3>
-                                        <a class="question-report blue-button" href="{{route('get.QuestionDetails',$user[0]['id'])}}">Details</a>
+                                        <a class="question-report blue-button" href="{{route('get.QuestionDetails',$user[0]['id_post'])}}">Details</a>
                                         <!-- <div class="question-type-main"><i class="icon-signal"></i>Poll</div> -->
                                         <div class="question-content">
                                             <div class="question-bottom">
-                                                <div class="question-answered"><i class="icon-flag"></i>Reported</div>
-                                                <span class="question-category"><a href="#"><i class="icon-folder-close"></i>CSS</a></span>
-                                                <span class="question-date"><i class="icon-time"></i>15 secs ago</span>
-                                                <span class="question-comment"><a href="#"><i class="icon-comment"></i>5 Answers</a></span>
-                                                <a class="question-reply" href="#"><i class="icon-heart"></i>4 votes</a>
-                                                <span class="question-view"><i class="icon-user"></i>70 views</span>
+                                                {{--<div class="question-answered"><i class="icon-flag"></i>Reported</div>--}}
+                                                {{--<span class="question-category"><a href="#"><i class="icon-folder-close"></i>CSS</a></span>--}}
+                                                <span class="question-date"><i class="icon-time"></i>{{ $user[0]['timepost'] }}</span>
+                                                {{--<span class="question-comment"><a href="#"><i class="icon-comment"></i>5 Answers</a></span>--}}
+                                                <a class="question-reply" href="#"><i class="icon-heart"></i>
+                                                    @if (!empty($user[0]['votes']))
+                                                        {{ $user[0]['votes'] }} votes
+                                                    @else
+                                                        0 votes
+                                                    @endif
+                                                </a>
+                                                <span class="question-view"><i class="icon-user"></i>
+                                                    @if (!empty($user[0]['view']))
+                                                        {{ $user[0]['view'] }} views
+                                                    @else
+                                                        0 view
+                                                    @endif
+                                                </span>
                                             </div>
                                         </div>
                                     </article>
@@ -160,7 +172,42 @@
 @endif
 @section('javascript')
 <script>
-    $("textarea").hashtags();
+    var input = document.querySelector('[name=mix]');
+
+        tagify = new Tagify(input, {
+            mode : 'mix',
+            pattern : /@|#/,
+            enforceWhitelist : true,
+            whitelist : [
+                {
+                    value : 'cartman'
+                },
+                {
+                    value : 'kyle'
+                }
+            ],
+            dropdown   : {
+                enabled : 1
+            }
+        });
+
+        tagify.on('input', function(e) {
+            var prefix = e.detail.prefix;
+
+            if(prefix) {
+                if( prefix == '@' )
+                    tagify.settings.whitelist = whitelist_1;
+
+                if( prefix == '#' )
+                    tagify.settings.whitelist = whitelist_2;
+
+                if( e.detail.value.length > 1 )
+                    tagify.dropdown.show.call(tagify, e.detail.value);
+            }
+            tagify.addTags(["Cuong"]);
+            
+            console.log('mix-mode "input" event value: ', e.detail);
+        });
 </script>
 @endsection
 @endsection
