@@ -20,7 +20,7 @@
                         <div class="comment-vote">
                             <ul class="question-vote">
                                 <li><a href="#" id="up_vote_post" class="question-vote-up" title="Like"></a></li>
-                                <li><span id="value_vote_post" class="question-vote-result">{{$post[0]['votes']}}</span></li>
+                                <li><span id="value_vote_post" class="question-vote-result">+1</span></li>
                                 <li><a href="#" id="down_vote_post" class="question-vote-down" title="Dislike"></a></li>
                             </ul>
                         </div>
@@ -73,9 +73,10 @@
                             <div class="comment-author"><a href="#">{{$value['username']}}</a></div>
                             <div class="question-vote">
                                 <ul class="question-vote">
-                                    <li id="up{{$value['idpost']}}"><a  class="question-vote-up" title="Like" onclick='upcom("{{ trim(preg_replace('/\s\s+/', ' ', $value['idpost']))}}")'></a></li>
-                                    <li><span class="question-vote-result" id="comment_count_{{$value['idpost']}}">{{$value['votes']}}</span></li>
-                                    <li id="down{{$value['idpost']}}"><a  class="question-vote-down" title="Dislike"  onclick='downcom("{{ trim(preg_replace('/\s\s+/', ' ', $value['idpost']))}}")'></a></li>
+                                    <li><a href="#" class="question-vote-up" title="Like"></a></li>
+                                    <li<span class="question-vote-result">{{$value['votes']}}</span></li>
+
+                                    <li><a href="#" class="question-vote-down" title="Dislike"></a></li>
                                 </ul>
                             </div>
                         </div>
@@ -100,7 +101,7 @@
     <div class="page-content ask-question" id="answer">
         <div class="boxedtitle page-title"><h2>Your answer</h2></div>
         <div class="form-style form-style-3" id="question-submit">
-            <form action="{{route('post.addComment', $post[0]['idpost'])}}" method="POST">
+            <form action="{{route('post.addComment', $post[0]['id'])}}" method="POST">
                 <div id="form-textarea" style="margin-top:10px;">
                  <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <p>
@@ -137,7 +138,6 @@
              url: "{{route('get.check-vote-post',$post[0]['idpost'])}}",
              type: 'GET',
              success: function(data) {
-                console.log(data);
                  if (data=="UP") {
                     $('#up_vote_post').addClass('lime-green-button');
                  }
@@ -153,6 +153,7 @@
              type: 'GET',
              success: function(data) {
                 console.log(data);
+
                  if (data=="NOPE") {
                      $.alert({
                         title: 'Cảnh báo!',
@@ -162,7 +163,6 @@
                      // $('#up_vote_post').addClass('lime-green-button');
                  }
                  else{
-                     $("#value_vote_post").html(data);
                     $('#up_vote_post').addClass('lime-green-button');
                      $('#down_vote_post').removeClass('red-button');
                  }
@@ -175,7 +175,6 @@
              url: "{{route('get.down-vote-post',$post[0]['idpost'])}}",
              type: 'GET',
              success: function(data) {
-                console.log(data);
                  if (data=="NOPE") {
                     $.alert({
                         title: 'Cảnh báo!',
@@ -186,69 +185,12 @@
                      // $('#down_vote_post').addClass('lime-green-button');
                  }
                  else{
-                    $("#value_vote_post").html(data);
                     $('#down_vote_post').addClass('red-button');
                     $('#up_vote_post').removeClass('lime-green-button');
                  }
              }
          });
      });
-    // function getVote(id){
-    // $.getJSON("{{url('comment-vote-count')}}/"+id, function(json, textStatus) {
-    //         console.log(json);
-    // });
-    // }
-    function upcom(id) {
-        // body...
-         console.log("{{url('vote-comment')}}/"+id);
-         $.ajax({
-             url: "{{url('vote-comment')}}/"+id,
-             type: 'GET',
-            success: function(data){
-                 if (data=="NOPE") {
-                    $.alert({
-                        title: 'Cảnh báo!',
-                        theme:'supervan',
-                        content: 'Mẹ m m vote rồi mà!',
-                        openAnimation: 'RotateXR'
-                    });
-                     // $('#down_vote_post').addClass('lime-green-button');
-                 }
-                 else{
-                    $("#comment_count_"+id).html(data);
-                    $('#down'+id).removeClass('red-button');
-                    console.log('#down'+id);
-                    $('#up'+id).addClass('lime-green-button');
-                 }
-            }
-         });
-        // console.log(id);
-    }
-     function downcom(id) {
-        // body...
-         // console.log("{{url('down-comment')}}/"+id);
-         $.ajax({
-             url: "{{url('down-vote-comment')}}/"+id,
-             type: 'GET',
-            success: function(data){
-                 if (data=="NOPE") {
-                    $.alert({
-                        title: 'Cảnh báo!',
-                        theme:'supervan',
-                        content: 'Mẹ m m vote rồi mà!',
-                        openAnimation: 'RotateXR'
-                    });
-                     // $('#down_vote_post').addClass('lime-green-button');
-                 }
-                 else{
-                    $("#comment_count_"+id).html(data);
-                    $('#down'+id).addClass('red-button');
-                    console.log('#down'+id);
-                    $('#up'+id).removeClass('lime-green-button');
-                 }
-            }
-         });
-        // console.log(id);
-    }
+
  </script>
 @endsection

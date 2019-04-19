@@ -37,15 +37,14 @@
         </ul>
 
         <div class="tab-inner-warp">
-            <div class="tab-inner" >
-                <div id="newest">
+            <div class="tab-inner" id="newest">
                 @foreach ($post as $value)
                 <article class="question question-type-normal">
                     <h2>
                         <a href="{{route('get.QuestionDetails',$value['idpost'])}}">{{substr($value['title'],0,200)}}</a>
                     </h2>
                     <a class="question-report red-button" href="#">Report</a>
-                    <div class="question-type-main"><a href="{{route('get.QuestionDetails',$value['idpost'])}}">Answer</a></div>
+                    <div class="question-type-main"><a href="{{route('get.QuestionDetails',$value['id'])}}">Answer</a></div>
                     <div class="question-author">
                         <a href="#" original-title="{{$value['firstname'].$value['lastname']}}" class="question-author-img tooltip-n"><span></span><img alt="" src="{{$value['avatar']}}"></a>
                     </div>
@@ -72,21 +71,19 @@
                     </div>
                 </article>
                 @endforeach
-                </div>
+                
                 <a  class="load-questions" onclick="loadMore('newest',0)"><i class="icon-refresh"></i>Load More Questions</a>
             </div>
         </div>
         <div class="tab-inner-warp">
             <div class="tab-inner">
-                <div id="frequent">
                   @foreach ($frequent as $value)
-                  
                 <article class="question question-type-normal">
                     <h2>
                         <a href="{{route('get.QuestionDetails',$value['idpost'])}}">{{substr($value['title'],0,200)}}</a>
                     </h2>
                     <a class="question-report red-button" href="#">Report</a>
-                    <div class="question-type-main"><a href="{{route('get.QuestionDetails',$value['idpost'])}}">Answer</a></div>
+                    <div class="question-type-main"><a href="{{route('get.QuestionDetails',$value['id'])}}">Answer</a></div>
                     <div class="question-author">
                         <a href="#" original-title="{{$value['firstname'].$value['lastname']}}" class="question-author-img tooltip-n"><span></span><img alt="" src="{{$value['avatar']}}"></a>
                     </div>
@@ -114,62 +111,75 @@
                     </div>
                 </article>
                 @endforeach
-                </div>
-                <a  class="load-questions" onclick="loadMore('frequent',0)"><i class="icon-refresh"></i>Load More Questions</a>
+        
+                <a href="#" class="load-questions"><i class="icon-refresh"></i>Load More Questions</a>
             </div>
         </div>
         <div class="tab-inner-warp">
             <div class="tab-inner">
-                <div id="votes">
-                @foreach ($voted as $value)
-                 <article class="question question-type-normal">
+                @foreach ($unanswered as $value)
+                <article class="question question-type-normal">
                     <h2>
-                        <a href="{{route('get.QuestionDetails',$value['idpost'])}}">{{substr($value['title'],0,200)}}</a>
+                        <a href="">This is my first Question</a>
                     </h2>
                     <a class="question-report red-button" href="#">Report</a>
-                    <div class="question-type-main"><a href="{{route('get.QuestionDetails',$value['idpost'])}}">Answer</a></div>
+                    <div class="question-type-main"><a href="">Answer</a></div>
                     <div class="question-author">
-                        <a href="#" original-title="{{$value['firstname'].$value['lastname']}}" class="question-author-img tooltip-n"><span></span><img alt="" src="{{$value['avatar']}}"></a>
+                        <a href="#" original-title="{{$value['firstname'].$value['lastname']}}" class="question-author-img tooltip-n"><span></span><img alt="" src="../../ask-me/images/demo/avatar.png"></a>
                     </div>
                     <div class="question-inner">
                         <div class="clearfix"></div>
-                        <p class="question-desc">{{ strip_tags(substr($value['content'],0,300))}}</p>
+                        <p class="question-desc">Duis dapibus aliquam mi, eget euismod sem scelerisque ut. Vivamus at elit quis urna adipiscing iaculis. Curabitur vitae velit in neque dictum blandit. Proin in iaculis neque. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Curabitur vitae velit in neque dictum blandit.</p>
                         <div class="question-details">
-                            @if($value['stt']==0)
                             <span class="question-answered question-answered-done"><i class="icon-ok"></i>Solved</span>
-                            @elseif($value['stt']==1)
-                                  <span class="question-answered" style="color: #00aced;"><i class="icon-question"></i>In progress</span>
-                            @endif
                             {{--<span class="question-favorite"><i class="icon-star"></i>{{$value['comment']}}</span>--}}
                         </div>
-                        
-                        <span class="question-date"><i class="icon-time"></i>{{$value['timepost']}}</span>
+                        <span class="question-category"><a href="#"><i class="icon-folder-close"></i>Java</a></span>
+                        <span class="question-date"><i class="icon-time"></i>4 mins ago</span>
                         <span class="question-comment"><a href="#"><i class="icon-comment"></i>{{$value['comment']}} Answer</a></span>
-                        <a class="question-reply" href="#"><i class="icon-heart"></i>{{$value['votes']}} Vote</a>
-                        <span class="question-view"><i class="icon-user"></i>{{$value['view']}} View</span>
-                        <br>
-                        @foreach ($value['keyWordName'] as $val)
-                        <span class="question-category"><a href="#"><i class="icon-folder-close"></i>{{$val}}</a></span>
-                        @endforeach
+                        <a class="question-reply" href="#"><i class="icon-heart"></i>10 votes</a>
+                        <span class="question-view"><i class="icon-user"></i>70 views</span>
                         <div class="clearfix"></div>
                     </div>
                 </article>
                 @endforeach
-            </div>
+                <article class="question question-type-normal">
+                    <h2>
+                        <a href="">This is my first Question</a>
+                    </h2>
+                    <a class="question-report red-button" href="#">Report</a>
+                    <div class="question-type-main"><a href="">Answer</a></div>
+                                <div class="question-author">
+                        <a href="#" original-title="{{$value['firstname'].$value['lastname']}}" class="question-author-img tooltip-n"><span></span><img alt="" src="{{$value['avatar']}}"></a>
+                    </div>
+                    <div class="question-inner">
+                        <div class="clearfix"></div>
+                        <p class="question-desc">Duis dapibus aliquam mi, eget euismod sem scelerisque ut. Vivamus at elit quis urna adipiscing iaculis. Curabitur vitae velit in neque dictum blandit. Proin in iaculis neque. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Curabitur vitae velit in neque dictum blandit.</p>
+                        <div class="question-details">
+                            <span class="question-answered" style="color: #00aced;"><i class="icon-question"></i>In progress</span>
+                            {{--<span class="question-favorite"><i class="icon-star"></i>{{$value['comment']}}</span>--}}
+                        </div>
+                        <span class="question-category"><a href="#"><i class="icon-folder-close"></i>Laravel</a></span>
+                        <span class="question-date"><i class="icon-time"></i>4 mins ago</span>
+                        <span class="question-comment"><a href="#"><i class="icon-comment"></i>{{$value['comment']}} Answer</a></span>
+                        <a class="question-reply" href="#"><i class="icon-heart"></i>4 votes</a>
+                        <span class="question-view"><i class="icon-user"></i>70 views</span>
+                        <div class="clearfix"></div>
+                    </div>
+                </article>
 
-                <a  class="load-questions" onclick="loadMore('votes',0)"><i class="icon-refresh"></i>Load More Questions</a>
+                <a href="#" class="load-questions"><i class="icon-refresh"></i>Load More Questions</a>
             </div>
         </div>
         <div class="tab-inner-warp">
             <div class="tab-inner">
-                <div id="unanswered">
                @foreach ($unanswered as $value) 
                 <article class="question question-type-normal">
                     <h2>
-                        <a href="{{route('get.QuestionDetails',$value['idpost'])}}">{{substr($value['title'],0,200)}}</a>
+                        <a href="{{route('get.QuestionDetails',$value['id'])}}">{{substr($value['title'],0,200)}}</a>
                     </h2>
                     <a class="question-report red-button" href="#">Report</a>
-                    <div class="question-type-main"><a href="{{route('get.QuestionDetails',$value['idpost'])}}">Answer</a></div>
+                    <div class="question-type-main"><a href="{{route('get.QuestionDetails',$value['id'])}}">Answer</a></div>
                     <div class="question-author">
                         <a href="#" original-title="{{$value['firstname'].$value['lastname']}}" class="question-author-img tooltip-n"><span></span><img alt="" src="{{$value['avatar']}}"></a>
                     </div>
@@ -197,25 +207,18 @@
                     </div>
                 </article>
                 @endforeach
-                </div>
-                <a class="load-questions" onclick="loadMore('unanswered',0)"><i class="icon-refresh"></i>Load More Questions</a>
+
+                <a href="#" class="load-questions"><i class="icon-refresh"></i>Load More Questions</a>
             </div>
         </div>
 
     </div>
 <script >
-    var offsetlist={newest:0,frequent:0,votes:0,unanswered:0};
-    var step=3;
     var base="<?php echo url('/'); ?>";
     function loadMore(mode,offset) {
-        
-        // console.log(offsetlist[mode]);
-         $.getJSON('{{url("home-more")}}'+'/'+mode+"/"+offsetlist[mode], function(json, textStatus) {
+        // body...
+         $.getJSON('{{url("home-more")}}'+'/'+mode+"/"+offset, function(json, textStatus) {
             /*optional stuff to do after success */
-            console.log(json.length);
-            if (json.length==0) {
-                $("#"+mode).append('HẾT R CƯNG')
-            }else{
             json.map(function(e) {
                 var noidung='<article class="question question-type-normal">';
                     noidung+='<h2>';
@@ -252,13 +255,10 @@
                     // noidung+='</div>';
                     noidung+='</div>';
                     noidung+='</article>';
-               // console.log(noidung);
+                console.log(noidung);
                 $("#"+mode).append(noidung);
-
-            })}
+            })
     });
-    offsetlist[mode]+=step;
-
     }
    
 </script>
