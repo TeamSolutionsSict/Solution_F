@@ -27,21 +27,19 @@ class AppServiceProvider extends ServiceProvider
             $view->with('randomTag',$randomTag);
         });
 
-//        =============================
-
-          $sta=PostModel::select('id')->where('status',1)->get()->toArray();
+        $sta=PostModel::select('id as postid')->where('status',1)->get()->toArray();
           $stats=array();
           $stats['total']=count($sta);
            $stats['reported']=0;
            $stats['unanswered']=0;
            $stats['answered']=0;
          foreach ($sta as $value) {
-          $report=ReportPostModel::where('id',$value['id'])->count();
+          $report=ReportPostModel::select('id')->where('id',$value['postid'])->count();
               if ($report>3) {
                  $stats['reported']++;
               }
               else{
-                $comment= CommentModel::where('id_post',$value['id'])->count();
+                $comment=CommentModel::where('id_post',$value['postid'])->count();
                 if ($comment==0) {
                    $stats['unanswered']++;
                 }
