@@ -103,7 +103,7 @@
                         <input type="text" class="required-item" value="" name="fullname" id="fullname" aria-required="true">
                     </p>
                     <p>
-                        <label for="mail" class="required">EMail<span>*</span></label>
+                        <label for="mail" class="required">Email<span>*</span></label>
                         <input type="email" class="required-item" id="email" name="email" value="" aria-required="true">
                     </p>
                 </div>
