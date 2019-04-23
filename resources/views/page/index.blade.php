@@ -51,22 +51,24 @@
                     </div>
                     <div class="question-inner">
                         <div class="clearfix"></div>
-                        <p class="question-desc">{{ strip_tags(substr($value['content'],0,300))}}</p>
+                        <p class="question-desc"> {!! strip_tags(substr($value['content'],0,300)) !!}</p>
+                       
                         <div class="question-details">
-                            @if($value['stt']==0)
+                            @if($value['stt']==2)
                             <span class="question-answered question-answered-done"><i class="icon-ok"></i>Solved</span>
-                            @elseif($value['stt']==1)
+                            @elseif($value['stt']==3)
                                   <span class="question-answered" style="color: #00aced;"><i class="icon-question"></i>In progress</span>
+                             @elseif($value['stt']==1)
+                                  <span class="question-answered" style="color: red;"><i class="icon-question"></i>Unanserwed</span>
                             @endif
                         </div>
-                        
                         <span class="question-date"><i class="icon-time"></i>{{$value['timepost']}}</span>
                         <span class="question-comment"><a href="#"><i class="icon-comment"></i>{{$value['comment']}} Answer</a></span>
                         <a class="question-reply" href="#"><i class="icon-heart"></i>{{$value['votes']}} Vote</a>
                         <span class="question-view"><i class="icon-user"></i>{{$value['view']}} View</span>
                         <br>
                         @foreach ($value['keyWordName'] as $val)
-                        <span class="question-category"><a href="#"><i class="icon-folder-close"></i>{{$val}}</a></span>
+                        <span class="question-category"><a><i class="icon-folder-close"></i>{{$val}}</a></span>
                         @endforeach
                         <div class="clearfix"></div>
                     </div>
@@ -92,12 +94,14 @@
                     </div>
                     <div class="question-inner">
                         <div class="clearfix"></div>
-                        <p class="question-desc">{{ strip_tags(substr($value['content'],0,300))}}</p>
+                        <p class="question-desc">{!! strip_tags(substr($value['content'],0,300)) !!}</p>
                         <div class="question-details">
-                            @if($value['stt']==0)
+                            @if($value['stt']==2)
                             <span class="question-answered question-answered-done"><i class="icon-ok"></i>Solved</span>
-                            @elseif($value['stt']==1)
+                            @elseif($value['stt']==3)
                                   <span class="question-answered" style="color: #00aced;"><i class="icon-question"></i>In progress</span>
+                             @elseif($value['stt']==1)
+                                  <span class="question-answered" style="color: red;"><i class="icon-question"></i>Unanserwed</span>
                             @endif
                             {{--<span class="question-favorite"><i class="icon-star"></i>{{$value['comment']}}</span>--}}
                         </div>
@@ -108,7 +112,7 @@
                         <span class="question-view"><i class="icon-user"></i>{{$value['view']}} View</span>
                         <br>
                         @foreach ($value['keyWordName'] as $val)
-                        <span class="question-category"><a href="#"><i class="icon-folder-close"></i>{{$val}}</a></span>
+                        <span class="question-category"><a><i class="icon-folder-close"></i>{{$val}}</a></span>
                         @endforeach
                         <div class="clearfix"></div>
                     </div>
@@ -133,12 +137,14 @@
                     </div>
                     <div class="question-inner">
                         <div class="clearfix"></div>
-                        <p class="question-desc">{{ strip_tags(substr($value['content'],0,300))}}</p>
+                        <p class="question-desc">{!! strip_tags(substr($value['content'],0,300)) !!}</p>
                         <div class="question-details">
-                            @if($value['stt']==0)
+                             @if($value['stt']==2)
                             <span class="question-answered question-answered-done"><i class="icon-ok"></i>Solved</span>
-                            @elseif($value['stt']==1)
+                            @elseif($value['stt']==3)
                                   <span class="question-answered" style="color: #00aced;"><i class="icon-question"></i>In progress</span>
+                             @elseif($value['stt']==1)
+                                  <span class="question-answered" style="color: red;"><i class="icon-question"></i>Unanserwed</span>
                             @endif
                             {{--<span class="question-favorite"><i class="icon-star"></i>{{$value['comment']}}</span>--}}
                         </div>
@@ -149,7 +155,7 @@
                         <span class="question-view"><i class="icon-user"></i>{{$value['view']}} View</span>
                         <br>
                         @foreach ($value['keyWordName'] as $val)
-                        <span class="question-category"><a href="#"><i class="icon-folder-close"></i>{{$val}}</a></span>
+                        <span class="question-category"><a><i class="icon-folder-close"></i>{{$val}}</a></span>
                         @endforeach
                         <div class="clearfix"></div>
                     </div>
@@ -175,7 +181,7 @@
                     </div>
                     <div class="question-inner">
                         <div class="clearfix"></div>
-                        <p class="question-desc">{{ strip_tags(substr($value['content'],0,300))}}</p>
+                        <p class="question-desc">{!! strip_tags(substr($value['content'],0,300)) !!}</p>
                         <div class="question-details">
                             @if($value['stt']==0)
                             <span class="question-answered question-answered-done"><i class="icon-ok"></i>Solved</span>
@@ -204,7 +210,7 @@
 
     </div>
 <script >
-    var offsetlist={newest:0,frequent:0,votes:0,unanswered:0};
+    var offsetlist={newest:6,frequent:6,votes:6,unanswered:6};
     var step=3;
     var base="<?php echo url('/'); ?>";
     function loadMore(mode,offset) {

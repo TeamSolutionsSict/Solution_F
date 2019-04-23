@@ -2,21 +2,11 @@
 
 @section ('section-warp')
     <div class="section-warp ask-me">
-
     </div><!-- End section-warp -->
 @endsection
-
 @section('content')
-
-
     <article class="question single-question question-type-normal">
                     <div class="about-author clearfix">
-                    <div class="author-image avtuser">
-                      <a href="#" original-title="admin" class="tooltip-n"><img alt="" src="{{$post[0]['avatar']}}"></a>
-                    </div>
-                    <div class="author-bio avtuser">
-                        <div class="comment-author"><a href="#"><h4>User Name</a></div>
-
                         <div class="comment-vote">
                             <ul class="question-vote">
                                 <li><a href="#" id="up_vote_post" class="question-vote-up" title="Like"></a></li>
@@ -24,9 +14,13 @@
                                 <li><a href="#" id="down_vote_post" class="question-vote-down" title="Dislike"></a></li>
                             </ul>
                         </div>
-                        <a class="comment-reply" data-toggle="collapse" href="#answer"><i class="icon-reply"></i>{{count($comment)}} Answer</a>
+                    <div class="author-image">
+                      <a href="#" original-title="admin" class="tooltip-n"><img alt="" src="{{url($post[0]['avatar'])}}"></a>
                     </div>
-                </div>
+                    </div>
+                    <div class="author-bio">
+                        <div class="comment-author"><a href="#"><h4>{{$post[0]['username']}}</a></div><a class="comment-reply" data-toggle="collapse" href="#answer"><i class="icon-reply"></i>{{count($comment)}} Answer</a>
+                    </div>
                     <h2>
                         <a href="single_question.html">{{$post[0]['title']}}</a>
                     </h2>
@@ -37,7 +31,13 @@
                             {!! $post[0]['content'] !!}
                         </div>
                         <div class="question-details">
-                            <span class="question-answered question-answered-done"><i class="icon-ok"></i>solved</span>
+                            @if($post[0]['stt']==2)
+                            <span class="question-answered question-answered-done"><i class="icon-ok"></i>Solved</span>
+                            @elseif($post[0]['stt']==3)
+                                  <span class="question-answered" style="color: #00aced;"><i class="icon-question"></i>In progress</span>
+                             @elseif($post[0]['stt']==1)
+                                  <span class="question-answered" style="color: red;"><i class="icon-question"></i>Unanserwed</span>
+                            @endif
                             <span class="question-favorite"><i class="icon-star"></i>5</span>
                         </div>
                         <span class="question-comment"><a href="#"><i class="icon-comment"></i>{{count($comment)}} Answer</a></span>
@@ -46,7 +46,7 @@
                         <span class="single-question-vote-result">+22</span>
                         <br>
                         @foreach ($post[0]['keyWordName'] as $value)
-                            <span class="question-category"><a href="#"><i class="icon-folder-close"></i>{{$value}}</a></span>
+                            <span class="question-category"><a href="{{ route('get.QuestionByTag', $post[0]['keyWordID'])}}"><i class="icon-folder-close"></i>{{$value}}</a></span>
                         @endforeach
                         <ul class="single-question-vote">
                             <li><a href="#" class="single-question-vote-down" title="Dislike"><i class="icon-thumbs-down"></i></a></li>
@@ -59,25 +59,28 @@
                     </div>  
                 </article>
     <div id="commentlist" class="page-content">
-        <div class="boxedtitle page-title"><h2>Answers ( <span class="color">{{count($comment)}}</span> )</h2></div>
+        <div class="boxedtitle page-title"><h2>Answers ( <span class="color">{{count($comment)}}</span> )</h2>
+        </div>
         <ol class="commentlist clearfix">
         @foreach ($comment as $key=>$value)
             @if($key==count($comment)-2)
-               <li class="comment" id="last">
+            <li class="comment" id="last">
             @endif
              <li class="comment">
                 <div class="comment-body comment-body-answered clearfix">
-                    <div class="avatar"><img alt="" class="avatar" src="{{$value['avatar']}}"></div>
-                    <div class="comment-text">
-                        <div class="author clearfix">
-                            <div class="comment-author"><a href="#">{{$value['username']}}</a></div>
-                            <div class="question-vote">
+                    <div class="question-vote">
                                 <ul class="question-vote">
-                                    <li id="up{{$value['idpost']}}"><a  class="question-vote-up" title="Like" onclick='upcom("{{ trim(preg_replace('/\s\s+/', ' ', $value['idpost']))}}")'></a></li>
+                                    <li id="up{{$value['idpost']}}"><a  class="question-vote-up" title="Like" onclick='upcom("{{ $value['idpost']}}")'></a></li>
                                     <li><span class="question-vote-result" id="comment_count_{{$value['idpost']}}">{{$value['votes']}}</span></li>
-                                    <li id="down{{$value['idpost']}}"><a  class="question-vote-down" title="Dislike"  onclick='downcom("{{ trim(preg_replace('/\s\s+/', ' ', $value['idpost']))}}")'></a></li>
+                                    <li id="down{{$value['idpost']}}"><a  class="question-vote-down" title="Dislike"  onclick='downcom("{{ $value['idpost']}}")'></a></li>
                                 </ul>
                             </div>
+                    <div class="avatar"><img alt="" class="avatar" src="{{url($value['avatar'])}}">
+                        <div class="comment-author"><a href="#">{{$value['username']}}</a></div>
+                    </div>
+                    <div class="comment-text">
+                        <div class="author clearfix">
+                            
                         </div>
                     </div>
                     <div class="question-desc">
@@ -85,9 +88,13 @@
                         <div class="text">
                             {!! $value['content'] !!}
                         </div>
+                        @if($self)
+                        <a href="{{route('get.SetBest',$value['idpost'])}}"><span class="icon-ok">MARK AS BEST</span></a>
+                        @endif
                         @if($value['best'])
                         <div class="question-answered question-answered-done"><i class="icon-ok"></i>Best Answer</div>
                         @endif
+
                         <div class="comment-meta">
                                 <div class="date"><i class="icon-time"></i>{{$value['time_cmt']}}</div>
                         </div>
@@ -112,7 +119,7 @@
                  <input type="hidden" name="content_code">
                 <script src="{{asset('page/ckeditor/ckeditor.js')}}"></script>
                 <script> CKEDITOR.replace('editor1');  </script>
-                <script>hljs.initHighlightingOnLoad();</script>
+               <!--  <script>hljs.initHighlightingOnLoad();</script> -->
                 <p class="form-submit">
                     <input type="submit" id="publish-question" value="Post Answer Your" class="button color small submit">
                 </p>
@@ -153,7 +160,15 @@
              type: 'GET',
              success: function(data) {
                 console.log(data);
-                 if (data=="NOPE") {
+                if (data=="NOT_LOGIN") {
+                      $.alert({
+                        title: 'Cảnh báo!',
+                        theme:'supervan',
+                        content: 'Đăng nhập hộ em sếp eii ',
+                        openAnimation: 'RotateXR'
+                    });
+                }
+                 else if (data=="NOPE") {
                      $.alert({
                         title: 'Cảnh báo!',
                         content: 'Mẹ m m vote rồi mà!',
@@ -200,16 +215,25 @@
     // }
     function upcom(id) {
         // body...
-         console.log("{{url('vote-comment')}}/"+id);
+         // console.log("{{url('vote-comment')}}/"+id);
          $.ajax({
              url: "{{url('vote-comment')}}/"+id,
              type: 'GET',
             success: function(data){
-                 if (data=="NOPE") {
+                console.log(data);
+                if (data=="NOT_LOGIN") {
+                      $.alert({
+                        title: 'Cảnh báo!',
+                        theme:'supervan',
+                        content: 'Đăng nhập hộ em sếp eii ',
+                        openAnimation: 'RotateXR'
+                    });
+                }
+                 else if (data=="NOPE") {
                     $.alert({
                         title: 'Cảnh báo!',
                         theme:'supervan',
-                        content: 'Mẹ m m vote rồi mà!',
+                        content: 'Bạn đã vote ',
                         openAnimation: 'RotateXR'
                     });
                      // $('#down_vote_post').addClass('lime-green-button');
@@ -226,22 +250,31 @@
     }
      function downcom(id) {
         // body...
-         // console.log("{{url('down-comment')}}/"+id);
+         console.log(id);
          $.ajax({
              url: "{{url('down-vote-comment')}}/"+id,
              type: 'GET',
             success: function(data){
-                 if (data=="NOPE") {
+                if (data=="NOT_LOGIN") {
+                      $.alert({
+                        title: 'Cảnh báo!',
+                        theme:'supervan',
+                        content: 'Đăng nhập hộ em sếp eii ',
+                        openAnimation: 'RotateXR'
+                    });
+                }
+                 else if (data=="NOPE") {
                     $.alert({
                         title: 'Cảnh báo!',
                         theme:'supervan',
                         content: 'Mẹ m m vote rồi mà!',
                         openAnimation: 'RotateXR'
                     });
-                     // $('#down_vote_post').addClass('lime-green-button');
+                     $('#down_vote_post').addClass('lime-green-button');
                  }
                  else{
                     $("#comment_count_"+id).html(data);
+                    console.log($("#comment_count_"+id).html());
                     $('#down'+id).addClass('red-button');
                     console.log('#down'+id);
                     $('#up'+id).removeClass('lime-green-button');

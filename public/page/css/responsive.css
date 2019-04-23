@@ -686,11 +686,11 @@ url: www.2code.info
 		padding-top: 53px;
 	}
 	.single-question.question-type-normal .question-type-main,.single-question.question-type-poll .question-type-main {
-		left: 20px;
+		left: 570px;
 		right: inherit;
 	}
 	.single-question.question-type-normal .question-report {
-		left: 104px;
+		left: 640px;
 		right: inherit;
 	}
 	.single-question.question-type-poll .question-report {
@@ -1038,7 +1038,7 @@ url: www.2code.info
 	}
 	.comment-author{
 		/*float: left;*/
-		margin: 0px 0px 10px;
+		margin: 0px 5px 0px;
 	}
 	.post-next-prev .prev-post a,.post-next-prev .next-post a {
 		display: block;
@@ -1231,9 +1231,6 @@ url: www.2code.info
 	.single-question.question h2 {
 		margin: 15px 20px 10px;
 		padding: 0;
-	}
-	.comment-vote,.question-vote {
-		margin-top: -5px;
 	}
 	.comment .question-vote-result {
 		/*margin-top: 15px;*/
