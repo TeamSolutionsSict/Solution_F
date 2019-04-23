@@ -367,8 +367,9 @@ $data=json_decode($data);
 
 
     //Register
-    public function postRegister(Request $request) {
+    public function postRegister(RegisterRequest $request) {
         $register = new User();
+        $hh = new Make();
 //        dd($request->hasFile('avatar'));
         if($request->hasFile('fileavatar')){
             $file = $request->file('fileavatar');
@@ -376,7 +377,10 @@ $data=json_decode($data);
             $fileName  = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
             $location = public_path('\\page\\images\\avatar\\'.$request ->username.".".$extension);
             Image::make($file)->resize(300, 300)->save($location);
-            $avatar_link=('public/page/images/avatar/'.$request ->username.".".$extension);
+            $avatar_link=('page/images/avatar/'.$request ->username.".".$extension);
+        }
+        else{
+            $avatar_link=('page/images/avatar/boy-512.png');
         }
         $date = new Datetime();
         $register -> username = $request ->username;
@@ -384,7 +388,7 @@ $data=json_decode($data);
         $username = $register->username;
         //id_user = username + ngày giờ hiện tại + random 8 ký tự
         $ran = $username.$date->format('d-m-Y').Str::random(8);
-        $register -> id = Hash::make($ran);
+        $register -> id = $hh->hashID($username);
         $register -> email = $request ->email;
         $register -> phone = $request ->phone;
         $register -> password = Hash::make($request->password);
@@ -393,6 +397,7 @@ $data=json_decode($data);
         $register -> level = 2;
         $register -> status = 1;
         $register->save();
+
         return redirect()->route('get.Home');
     }
      public function addComment(Request $req,$id)

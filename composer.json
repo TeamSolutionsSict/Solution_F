@@ -37,6 +37,7 @@
         },
         "files": [
             "app/Http/Helper.php"
+			"app/Http/Make.php"
         ],
         "classmap": [
             "database/seeds",

@@ -95,7 +95,7 @@
             <h2 style="color: #fdb655">Say hello !</h2>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi adipiscing gravida odio, sit amet suscipit risus ultrices eu. Fusce viverra neque at purus laoreet consequat.</p>
             <br>
-            <form class="form-style form-style-3 form-style-5 form-js" action="{!! route('post.Contact') !!}" method="post">
+            <form class="form-style form-style-3 form-style-5 form-js" action="{{route('post.Contact')}}" method="post">
                 <input type="hidden" name="_token" value="{!! csrf_token() !!}">
                 <div class="form-inputs clearfix">
                     <p>
@@ -103,7 +103,7 @@
                         <input type="text" class="required-item" value="" name="fullname" id="fullname" aria-required="true">
                     </p>
                     <p>
-                        <label for="mail" class="required">EMail<span>*</span></label>
+                        <label for="mail" class="required">Email<span>*</span></label>
                         <input type="email" class="required-item" id="email" name="email" value="" aria-required="true">
                     </p>
                 </div>
