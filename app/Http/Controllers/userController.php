@@ -11,7 +11,7 @@ class userController extends Controller
 
     public function getListUser(){
         $user = User::selectRaw('tb_user.username,tb_user.firstname, tb_user.lastname ,tb_user.phone, tb_user.id, tb_user.email, tb_user.avatar, tb_user.status, tb_user.level, count(tb_post.id) as num_post, count(tb_comment.id) as num_comment')
-            ->where('tb_user.level', '=', 1)
+            ->where('tb_user.level', '=', 2)
             ->leftjoin('tb_post','tb_user.username','tb_post.username')
             ->leftjoin('tb_comment','tb_comment.username','tb_user.username')
             ->groupBy('tb_user.username','tb_user.phone', 'tb_user.id', 'tb_user.email', 'tb_user.avatar', 'tb_user.status', 'tb_user.level','tb_user.firstname', 'tb_user.lastname')
@@ -21,17 +21,18 @@ class userController extends Controller
     }
     //search
     public function getSearchUser(Request $request){
+        $search = $request->search;
         if ($request->ajax()){
             $output = "";
             $user= User::selectRaw('tb_user.username,tb_user.firstname, tb_user.lastname ,tb_user.phone, tb_user.id, tb_user.email, tb_user.avatar, tb_user.status, tb_user.level, count(tb_post.id) as num_post, count(tb_comment.id) as num_comment')
                 ->leftjoin('tb_post','tb_user.username','tb_post.username')
                 ->leftjoin('tb_comment','tb_comment.username','tb_user.username')
                 ->groupBy('tb_user.username','tb_user.phone', 'tb_user.id', 'tb_user.email', 'tb_user.avatar', 'tb_user.status', 'tb_user.level','tb_user.firstname', 'tb_user.lastname')
-                ->where('tb_user.username','LIKE','%'.$request->search.'%')
+                ->where('tb_user.username','LIKE','%'.$search.'%')
 //                ->orWhere('email','LIKE','%'.$request->search.'%')
 //                ->orWhere('phone','LIKE','%'.$request->search.'%')
 //                ->orWhere('name','LIKE','%'.$request->search.'%')
-                ->where('tb_user.level', '=', 1)
+                ->where('tb_user.level', '=', 2)
                 ->orderBy('num_post', 'desc')
                 ->get();
             if ($user){
@@ -52,6 +53,17 @@ class userController extends Controller
                 return Response($output);
             }
         }
+    }
+
+    //User (xem trang cá nhân cửa người khác)
+    public function getUser(Request $request){
+        $user_detail = User::selectRaw('tb_user.*, tb_post.id as id_post, tb_post.title, tb_post.timepost, tb_post.view, tb_post.votes, tb_post.comment, tb_post.keyword_id, count(tb_post.id) as num_post, count(tb_post.id) as num_comment, count(tb_post.comment) as post_answered')
+            ->where('tb_user.id', $request->id)
+            ->leftjoin('tb_post','tb_user.username','tb_post.username')
+            ->leftjoin('tb_comment','tb_comment.username','tb_user.username')
+            ->groupBy('tb_user.username','tb_user.phone', 'tb_user.id', 'tb_user.email', 'tb_user.avatar', 'tb_user.status', 'tb_user.level', 'tb_user.bio_profile','tb_user.remember_token','tb_user.firstname','tb_user.lastname','tb_user.password', 'tb_post.id', 'tb_post.title', 'tb_post.timepost', 'tb_post.view', 'tb_post.votes', 'tb_post.comment', 'tb_post.keyword_id')
+            ->get()->toArray();
+        return view('page.user_detail', compact('user_detail'));
     }
 
 }

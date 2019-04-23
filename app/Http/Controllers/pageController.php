@@ -167,6 +167,14 @@ class pageController extends Controller
         return view('page.index', compact('post','frequent','unanswered'));
     }
 
+    public function getTerms(){
+        return view('page.terms');
+    }
+
+    public function getAddQuestion(){
+        return view('page.add_question');
+    }
+
     function getstatus($id){
        //   $post=PostModel::select('tb_post.*','avatar')
        //     ->join('tb_user', 'tb_user.username', '=', 'tb_post.username')
@@ -194,40 +202,170 @@ class pageController extends Controller
        if(count($comment)>0) return 1;
        else return 3;
     }
-    
+//    Question Details
+   public function getQuestionDetails($id){
+        $post=PostModel::find($id);
+        $post->view=$post->view+1;
+        $post->save();
+       $post=PostModel::select('tb_post.*','tb_post.id as idpost','tb_user.*')
+           ->join('tb_user', 'tb_user.username', '=', 'tb_post.username')
+           ->where('tb_post.id',$id)->get()->toArray();
+       $now = new DateTime(date('Y-m-d H:i:s'));
+       $ref = new DateTime($post[0]['timepost']);
+       $diff = $now->diff($ref);
+       // printf('%d days, %d hours, %d minutes', $diff->d, $diff->h, $diff->i);
+       $post[0]['timepost']=$diff->d." days, ".$diff->h." hours ".$diff->i." minutes ago";
+       $allKey=PostkeyModel::select('*')->where('id_post',$id)->get()->toArray();
+       $post[0]['keyWordName']= array();
+       foreach ($allKey as $val) {
+           $keyname=KeywordModel::find($val['id_keyword']);
+           $post[0]['keyWordName'][]=$keyname->keyword;
+       }
+       $comment=CommentModel::select('tb_comment.*','tb_user.avatar')
+           ->join('tb_user', 'tb_user.username', '=', 'tb_comment.username')
+           ->where('tb_comment.id_post',$id)
+           ->get()
+           ->toArray();
+       foreach ($comment as $key=>$value) {
+           // $now = new DateTime(date('Y-m-d H:i:s'));
+           $ref = new DateTime($value['time_cmt']);
+           $diff = $now->diff($ref);
+           $comment[$key]['time_cmt']=$diff->d." days, ".$diff->h." hours ".$diff->i." minutes ago";
+       }
+       return view('page.question_details', compact('post','comment'));
+   }
+    public function postAddQuestion(Request $request){
+        //Lấy thời gian hiện tại
+        $date = new Datetime();
+        //Lấy username
+        $username = 'cuongdeptrai';
+        $helper = new Helper();
+        $idPost = $helper->hashID($username, $request->title);
 
-//    Profile
-    public function getProfile($id){
-        $user = User::where('tb_user.id', '=', $id)
-                    ->get()->toArray();
-        return view('page.profile',compact('user'));
-    }
+        //Validator form nhập vào
+        $rules = [
+            'title' => 'required',
+            'content' => 'required',
+        ];
+        $validator = $request->validate($rules);
 
-    public function postEditProfile(Request $request, $id) {
-        $user = User::where('id', '=', $id)->first();
+        $keyArr = explode(',',$request->question_tags);
+        foreach ($keyArr as $key => $value) {
+            $keyword = KeywordModel::where('keyword','=',$value)->get()->toArray();
+            //dd($keyword[0]['id']);
+            if(count($keyword) == 0){
+                $keyword = new KeywordModel();
+                $keyword->keyword = $value;
+                $keyword->status = 1;
+                $keyword->save();
 
-        $user->firstname = isset($request->firstname) ? $request->firstname : $user->firstname;
-        $user->lastname = isset($request->lastname) ? $request->lastname : $user->lastname;
-        $user->phone = isset($request->phone) ? $request->phone : $user->phone;
-        $user->password = isset($request->password) ? Hash::make($request->phone) : $user->phone;
-
-        if($request->hasFile('avatar')) {
-            $avatar = $request->file('avatar');
-            $avatar->move(public_path('/page/images/avatar'), $avatar->getClientOriginalName());
-            $link = 'page/images/avatar/' . $avatar->getClientOriginalName();
-            $user->avatar = $link;
+                $keypost = new PostkeyModel();
+                $keypost->id_post = $idPost;
+                $keypost->id_keyword = $keyword->id;
+                $keypost->save();
+            }else{
+                $keypost = new PostkeyModel();
+                $keypost->id_post = $idPost;
+                // dd($keyword[0]['id']);
+                $keypost->id_keyword = $keyword[0]['id'];
+                $keypost->save();
+            }
         }
-        $user->save();
 
+        $post = new PostModel();
+        $post->id = $idPost;
+        $post->title = $request->title;
+        $post->content = $request->content;
+        $post->username = $username;
+        $post->timepost = $date;
+        $post->status = 1;
+        $post->save();
         return redirect()->back();
-    }
 
-    //User (xem trang cá nhân cửa người khá - theo Username)
-    //Danh sách user
-    public function getUserList(){
-        return view('page.user_list');
     }
-//    contact_us
+    function getVotePost($id)
+    {
+      $list=PostModel::find($id);
+      if (!$list->votelist) {
+        $newJson=array();
+        $data='{
+  "username": "Aragorn",
+  "status": "Human"
+}';
+$data=json_decode($data);
+        $data->username="admin";
+        $data->status="UP";
+         $newJson[]=$data;
+      $list->votelist=json_encode($newJson);
+      $list->save();
+      return "SUCCESS";
+      }
+      else {
+      
+      $list_json=json_decode($list->votelist);
+      $newJson;
+      // dd($list_json);
+      foreach ($list_json as $value) {
+        // dd($value);
+        if($value->username=="admin" && $value->status=="UP"){ 
+          return 'NOPE';
+        }
+        else if ($value->username=="admin") {
+          $value->status="UP";
+        } 
+        $newJson[]=$value;
+         $list->votelist=json_encode($newJson);
+      $list->save();
+        return  "SUCCESS";
+      }
+      $newJson[]='{
+                          "username": "admin",
+                           "status": "UP"
+                          }';
+      $list->votelist=json_encode($newJson);
+      $list->save();
+      return "SUCCESS";
+    }
+  }
+    function getDownVotePost($id)
+    {
+      //Nhớ vứt Auth vào
+      $list=PostModel::find($id);
+      $list_json=json_decode($list->votelist);
+      $newJson;
+      foreach ($list_json as $value) {
+        if($value->username=="admin" && $value->status=="DOWN"){ 
+          return 'NOPE';
+        }
+        else if ($value->username=="admin") {
+          $value->status="DOWN"; 
+        }
+        $newJson[]=$value;
+         $list->votelist=json_encode($newJson);
+      $list->save();
+        return  "SUCCESS";
+      }
+      $newJson[]='{
+                          "username": "admin",
+                           "status": "DOWN"
+                          }';
+      $list->votelist=json_encode($newJson);
+      $list->save();
+      return "SUCCESS";
+    }
+    
+    function getCheckVotePost($id)
+    {
+      $list=PostModel::find($id);
+      $list_json=json_decode($list->votelist);
+      foreach ($list_json as $value) {
+         if ($value->username=="admin") {
+           return $value->status; 
+        }
+    }
+  }
+
+
     //Register
     public function postRegister(RegisterRequest $request) {
         $register = new User();
@@ -283,17 +421,6 @@ class pageController extends Controller
         $comment->save();
         return Redirect::to(URL::previous() . "#last");    
       }
-
-    //User (xem trang cá nhân cửa người khác)
-    public function getUser(Request $request){
-        $user_detail = User::selectRaw('tb_user.*, count(tb_post.id) as num_post, count(tb_comment.id) as num_comment, count(tb_post.comment) as post_answered')
-                            ->where('tb_user.id', $request->id)
-                            ->leftjoin('tb_post','tb_user.username','tb_post.username')
-                            ->leftjoin('tb_comment','tb_comment.username','tb_user.username')
-                            ->groupBy('tb_user.username','tb_user.phone', 'tb_user.id', 'tb_user.email', 'tb_user.avatar', 'tb_user.status', 'tb_user.level', 'tb_user.bio_profile')
-                            ->get()->toArray();
-        return view('page.user_detail', compact('user_detail'));
-    }
 
 //    public function posttest() {
 //            // Lấy thông tin username và email
