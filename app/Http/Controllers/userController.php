@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use Nexmo\Response;
+use App\PostModel;
 
 class userController extends Controller
 {
@@ -57,13 +58,27 @@ class userController extends Controller
 
     //User (xem trang cá nhân cửa người khác)
     public function getUser(Request $request){
-        $user_detail = User::selectRaw('tb_user.*, tb_post.id as id_post, tb_post.title, tb_post.timepost, tb_post.view, tb_post.votes, tb_post.comment, tb_post.keyword_id, count(tb_post.id) as num_post, count(tb_post.id) as num_comment, count(tb_post.comment) as post_answered')
-            ->where('tb_user.id', $request->id)
-            ->leftjoin('tb_post','tb_user.username','tb_post.username')
-            ->leftjoin('tb_comment','tb_comment.username','tb_user.username')
-            ->groupBy('tb_user.username','tb_user.phone', 'tb_user.id', 'tb_user.email', 'tb_user.avatar', 'tb_user.status', 'tb_user.level', 'tb_user.bio_profile','tb_user.remember_token','tb_user.firstname','tb_user.lastname','tb_user.password', 'tb_post.id', 'tb_post.title', 'tb_post.timepost', 'tb_post.view', 'tb_post.votes', 'tb_post.comment', 'tb_post.keyword_id')
+        $user_detail = User::selectRaw('tb_user.*')
+            ->where('tb_user.username', $request->username)
             ->get()->toArray();
-        return view('page.user_detail', compact('user_detail'));
+
+        $num_post = PostModel::selectRaw('tb_post.*')
+            ->where('tb_post.username', '=', $request->username)
+            ->get();
+
+        $post_answered = PostModel::selectRaw('tb_post.*')
+            ->where('tb_post.comment','>',0)
+            ->where('tb_post.username', '=', $request->username)
+            ->get()
+            ->toArray();
+
+        $post_unanswered = PostModel::selectRaw('tb_post.*')
+            ->where('tb_post.comment','=',0)
+            ->where('tb_post.username', '=', $request->username)
+            ->get()
+            ->toArray();
+
+        return view('page.user_detail', compact('user_detail', 'post_answered', 'num_post', 'post_unanswered'));
     }
 
 }
