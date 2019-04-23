@@ -51,4 +51,7 @@ Route::group(['prefix' => 'user', 'middleware' => 'userMiddleware'], function() 
 //Login
 Route::post('login',['as' => 'post.Login', 'uses' => 'LoginController@postLogin']);
 Route::get('logout',['as' => 'get.Logout', 'uses' => 'LoginController@getLogout']);
-
+//Reset Password
+Route::post('email-reset-password',['as' => 'post.EmailResetPass', 'uses' => 'PasswordController@postEmailResetPass']);
+Route::get('get-resest-password/{token}',['as' => 'get.ResetPassword', 'uses' => 'PasswordController@getResetPassword']);
+Route::post('resest-password',['as' => 'post.ResetPassword', 'uses' => 'PasswordController@postResetPassword']);
