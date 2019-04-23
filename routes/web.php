@@ -26,7 +26,7 @@ Route::get('down-vote-post/{id}',['as'=>'get.down-vote-post','uses'=>'PostContro
 Route::get('check-vote-post/{id}',['as'=>'get.check-vote-post','uses'=>'PostController@getCheckVotePost']);
 
 //xem profile user khác
-Route::get('user-detail/{id}',['as'=>'get.UserDetail','uses'=>'userController@getUser']);
+Route::get('user-detail/{username}',['as'=>'get.UserDetail','uses'=>'userController@getUser']);
 //Danh sách user
 Route::get('user-list',['as'=>'get.UserList','uses'=>'userController@getListUser']);
 Route::get('user-list/search',['as'=>'get.SearchUser','uses'=>'userController@getSearchUser']);

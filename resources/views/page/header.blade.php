@@ -171,7 +171,6 @@
         $("#av").change(function() {
             readURL(this);
         });
-
     }
     function checkRegister() {
         var username = $('#username').val();
@@ -202,20 +201,17 @@
                 if (data.status === 422) {
                     var errors = $.parseJSON(data.responseText);
                     $.each(errors, function (key, value) {
-
                         $('#response').addClass("alert alert-danger");
                         if ($.isPlainObject(value)) {
                             $.each(value, function (key, value) {
                                 console.log(key + " " + value);
                                 $("#"+key).val("");
                                 $("#"+key).attr("placeholder", value);
-
                             });
                         } else {
                             $("#"+key).val("");
                             $("#"+key).attr("placeholder", value);//this is my div with messages
                         }
-
                     });
                 }
             }

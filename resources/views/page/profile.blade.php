@@ -78,65 +78,41 @@
 
             <div class="page-content page-content-user-profile">
                 <div class="user-profile-widget">
-                    <h2 style="color: #fdb655">My Stats</h2>
+                    <h2 style="color: #fdb655">My Stats( {{count($num_post)}} )</h2>
                     <hr>
 
                     <div class="tabs-warp question-tab">
                         <ul class="tabs">
                             {{--<li class="tab"><a href="#" class="current"><i style="color: yellow" class="icon-question-sign"></i>Total Of Questions( <span>{{ $user_detail[0]['num_post'] }}</span> )</a></li>--}}
-                            <li class="tab"><a href="#"><i style="color: #3498db" class="icon-comment"></i>Answered Questions( <span>{{ $user[0]['post_answered'] }}</span> )</a></li>
-                            <li class="tab"><a href="#"><i style="color: orangered" class="icon-question"></i>Unanswered Questions( <span>{{ $user[0]['num_post'] - $user[0]['post_answered'] }}</span> )</a></li>
+                            <li class="tab"><a href="#"><i style="color: #3498db" class="icon-comment"></i>Answered Questions( <span>{{ count($post_answered) }}</span> )</a></li>
+                            <li class="tab"><a href="#"><i style="color: orangered" class="icon-question"></i>Unanswered Questions( <span>{{ count($num_post) - count($post_answered) }}</span> )</a></li>
                         </ul>
 
                         <div class="tab-inner-warp">
                             <div class="tab-inner">
-                                @for($i = 0; $i < $user[0]['post_answered']; $i ++)
+                                @foreach($post_answered as $values)
                                     <article class="question user-question">
                                         <h3>
-                                            <a href="{{route('get.QuestionDetails',$user[0]['id_post'])}}">{{ $user[0]['title'] }}</a>
+                                            <a href="{{route('get.QuestionDetails',$values['id'])}}">{{ $values['title'] }}</a>
                                         </h3>
-                                        <a class="question-report blue-button" href="{{route('get.QuestionDetails',$user[0]['id_post'])}}">Details</a>
-                                        <!-- <div class="question-type-main"><i class="icon-question-sign"></i>Question</div> -->
-                                        <div class="question-content">
-                                            <div class="question-bottom">
-                                                {{--<div class="question-answered question-answered-done"><i class="icon-ok"></i>Solved</div>--}}
-                                                <span class="question-category"><a href="#"><i class="icon-folder-close"></i>HTML</a></span>
-                                                <span class="question-date"><i class="icon-time"></i>15 secs ago</span>
-                                                <span class="question-comment"><a href="#"><i class="icon-comment"></i>5 Answers</a></span>
-                                                <a class="question-reply" href="#"><i class="icon-heart"></i>4 votes</a>
-                                                <span class="question-view"><i class="icon-user"></i>70 views</span>
-                                            </div>
-                                        </div>
-                                    </article>
-                                @endfor
-                            </div>
-                        </div>
-
-                        <div class="tab-inner-warp">
-                            <div class="tab-inner">
-                                @for($i = 0; $i < $user[0]['num_post'] - $user[0]['post_answered']; $i ++)
-                                    <article class="question user-question">
-                                        <h3>
-                                            <a href="{{route('get.QuestionDetails',$user[0]['id_post'])}}">{{ $user[0]['title'] }}</a>
-                                        </h3>
-                                        <a class="question-report blue-button" href="{{route('get.QuestionDetails',$user[0]['id_post'])}}">Details</a>
+                                        <a class="question-report blue-button" href="{{route('get.QuestionDetails',$values['id'])}}">Details</a>
                                         <!-- <div class="question-type-main"><i class="icon-signal"></i>Poll</div> -->
                                         <div class="question-content">
                                             <div class="question-bottom">
                                                 {{--<div class="question-answered"><i class="icon-flag"></i>Reported</div>--}}
                                                 {{--<span class="question-category"><a href="#"><i class="icon-folder-close"></i>CSS</a></span>--}}
-                                                <span class="question-date"><i class="icon-time"></i>{{ $user[0]['timepost'] }}</span>
+                                                <span class="question-date"><i class="icon-time"></i>{{ $values['timepost'] }}</span>
                                                 {{--<span class="question-comment"><a href="#"><i class="icon-comment"></i>5 Answers</a></span>--}}
                                                 <a class="question-reply" href="#"><i class="icon-heart"></i>
-                                                    @if (!empty($user[0]['votes']))
-                                                        {{ $user[0]['votes'] }} votes
+                                                    @if (!empty($values['votes']))
+                                                        {{ $values['votes'] }} votes
                                                     @else
                                                         0 votes
                                                     @endif
                                                 </a>
                                                 <span class="question-view"><i class="icon-user"></i>
-                                                    @if (!empty($user[0]['view']))
-                                                        {{ $user[0]['view'] }} views
+                                                    @if (!empty($values['view']))
+                                                        {{ $values['view'] }} views
                                                     @else
                                                         0 view
                                                     @endif
@@ -144,7 +120,43 @@
                                             </div>
                                         </div>
                                     </article>
-                                @endfor
+                                @endforeach
+                            </div>
+                        </div>
+
+                        <div class="tab-inner-warp">
+                            <div class="tab-inner">
+                                @foreach($post_unanswered as $values)
+                                    <article class="question user-question">
+                                        <h3>
+                                            <a href="{{route('get.QuestionDetails',$values['id'])}}">{{ $values['title'] }}</a>
+                                        </h3>
+                                        <a class="question-report blue-button" href="{{route('get.QuestionDetails',$values['id'])}}">Details</a>
+                                        <!-- <div class="question-type-main"><i class="icon-signal"></i>Poll</div> -->
+                                        <div class="question-content">
+                                            <div class="question-bottom">
+                                                {{--<div class="question-answered"><i class="icon-flag"></i>Reported</div>--}}
+                                                {{--<span class="question-category"><a href="#"><i class="icon-folder-close"></i>CSS</a></span>--}}
+                                                <span class="question-date"><i class="icon-time"></i>{{ $values['timepost'] }}</span>
+                                                {{--<span class="question-comment"><a href="#"><i class="icon-comment"></i>5 Answers</a></span>--}}
+                                                <a class="question-reply" href="#"><i class="icon-heart"></i>
+                                                    @if (!empty($values['votes']))
+                                                        {{ $values['votes'] }} votes
+                                                    @else
+                                                        0 votes
+                                                    @endif
+                                                </a>
+                                                <span class="question-view"><i class="icon-user"></i>
+                                                    @if (!empty($values['view']))
+                                                        {{ $values['view'] }} views
+                                                    @else
+                                                        0 view
+                                                    @endif
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </article>
+                                @endforeach
                             </div>
                         </div>
 

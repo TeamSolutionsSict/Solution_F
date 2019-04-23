@@ -22,11 +22,11 @@
             @foreach($user as $key=>$value)
                 <div class="user_detail col-lg-3">
                     <div class="avatar col-4">
-                        <a href="{{ route('get.UserDetail', $value['id']) }}"><img src="https://cdn0.iconfinder.com/data/icons/profession-vol-1/32/programmer_coder_developer_encoder_engineer_computer_coding-512.png" alt="Avatar"></a>
+                        <a href="{{ route('get.UserDetail', $value['username']) }}"><img src="https://cdn0.iconfinder.com/data/icons/profession-vol-1/32/programmer_coder_developer_encoder_engineer_computer_coding-512.png" alt="Avatar"></a>
                     </div>
                     <div class="content col-8">
                         <ul>
-                            <li><a href="{{ route('get.UserDetail',$value['id']) }}"><span><b>{{ str_limit($value['username'], 14) }}</b></span></a></li>
+                            <li><a href="{{ route('get.UserDetail',$value['username']) }}"><span><b>{{ str_limit($value['username'], 14) }}</b></span></a></li>
                             <li>Posts: <span><b>{{ $value['num_post'] }}</b></span></li>
                         </ul>
                     </div>

@@ -2,19 +2,38 @@
 
 namespace App\Http\Controllers;
 
+use App\PostModel;
 use Illuminate\Http\Request;
 use App\User;
+use Illuminate\Support\Facades\Auth;
 
 class profileController extends Controller
 {
     public function getProfile($id){
-        $user = User::selectRaw('tb_user.*, count(tb_post.id) as num_post, count(tb_post.id) as num_comment, count(tb_post.comment) as post_answered')
-                    ->where('tb_user.id', '=', $id)
-                    ->leftjoin('tb_post','tb_user.username','tb_post.username')
-                    ->leftjoin('tb_comment','tb_comment.username','tb_user.username')
-                    ->groupBy('tb_user.username','tb_user.phone', 'tb_user.id', 'tb_user.email', 'tb_user.avatar', 'tb_user.status', 'tb_user.level', 'tb_user.bio_profile','tb_user.remember_token','tb_user.firstname','tb_user.lastname','tb_user.password')
-                    ->get()->toArray();
-        return view('page.profile',compact('user'));
+        $username_auth = Auth::user()->username;
+
+        $user = User::selectRaw('tb_user.*')
+            ->where('tb_user.id', '=', $id)
+            ->get()->toArray();
+
+        $num_post = PostModel::selectRaw('tb_post.*')
+            ->where('tb_post.username', '=', $username_auth)
+            ->get();
+
+        $post_answered = PostModel::selectRaw('tb_post.*')
+            ->where('tb_post.comment','>',0)
+            ->where('tb_post.username', '=', $username_auth)
+            ->get()
+            ->toArray();
+
+        $post_unanswered = PostModel::selectRaw('tb_post.*')
+            ->where('tb_post.comment','=',0)
+            ->where('tb_post.username', '=', $username_auth)
+            ->get()
+            ->toArray();
+
+        return view('page.profile',compact('user', 'post_answered', 'num_post', 'post_unanswered'));
+
     }
 
     public function postEditProfile(Request $request, $id) {
