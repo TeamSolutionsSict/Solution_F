@@ -221,6 +221,17 @@ url: www.2code.info
 	.sidebar {
 		margin-top: 30px;
 	}
+    /* panel */
+    .panel-pop .form-style .form-inputs .inavatar {
+        width: 30%;
+        height: 23%;
+        margin-left: 32%;
+    }
+    .panel-pop .form-style .form-inputs .avatarlogin {
+        width: 30%;
+        height: 30%;
+        margin-left: 35%;
+    }
 	/* Widgets */
 	#footer .widget {
 		margin-bottom: 30px;
@@ -686,11 +697,11 @@ url: www.2code.info
 		padding-top: 53px;
 	}
 	.single-question.question-type-normal .question-type-main,.single-question.question-type-poll .question-type-main {
-		left: 20px;
+		left: 570px;
 		right: inherit;
 	}
 	.single-question.question-type-normal .question-report {
-		left: 104px;
+		left: 640px;
 		right: inherit;
 	}
 	.single-question.question-type-poll .question-report {
@@ -787,9 +798,37 @@ url: www.2code.info
 		margin-top: 0;
 		margin-bottom: 0;
 	}
-	.panel-pop {
-		width: 90%;
-	}
+    .panel-pop {
+        width: 90%;
+        padding: 5px 8px 5px 8px;
+    }
+    .panel-pop .form-style .form-inputs .inavatar {
+        width: 30%;
+        height: 15%;
+        margin-left: 32%;
+    }
+    .panel-pop .form-style .form-inputs .avatarlogin {
+        width: 30%;
+        height: 30%;
+        margin-left: 35%;
+    }
+    .panel-pop h2{
+        margin-bottom: 2%;
+        padding-bottom: 0;
+    }
+    .panel-pop .form-style .form-inputs input{
+        padding: 3px;
+    }
+    .panel-pop .form-style .form-inputs label{
+        font-size: 11px;
+    }
+    .panel-pop .form-style .form-inputs p .form-submit{
+        height: 30px;
+    }
+    .panel-pop .form-style .form-inputs input .button{
+        padding: 5px;
+        height: 30px;
+    }
 	.ask-me {
 		height: auto;
 	}
@@ -1038,7 +1077,7 @@ url: www.2code.info
 	}
 	.comment-author{
 		/*float: left;*/
-		margin: 0px 0px 10px;
+		margin: 0px 5px 0px;
 	}
 	.post-next-prev .prev-post a,.post-next-prev .next-post a {
 		display: block;
@@ -1231,9 +1270,6 @@ url: www.2code.info
 	.single-question.question h2 {
 		margin: 15px 20px 10px;
 		padding: 0;
-	}
-	.comment-vote,.question-vote {
-		margin-top: -5px;
 	}
 	.comment .question-vote-result {
 		/*margin-top: 15px;*/
