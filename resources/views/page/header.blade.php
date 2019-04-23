@@ -1,4 +1,3 @@
-@if(!Auth::check())
 <div class="login-panel">
     <section class="container">
         <div class="row">
